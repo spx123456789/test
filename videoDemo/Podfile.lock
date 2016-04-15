@@ -1,0 +1,102 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - BaiduMapKit (2.10.2)
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - FSCalendar (2.1.0)
+  - JDStatusBarNotification (1.5.3)
+  - M80AttributedLabel (1.3.2)
+  - Masonry (1.0.0)
+  - MJExtension (3.0.10)
+  - MJRefresh (3.1.0)
+  - pop (1.0.9)
+  - RDVTabBarController (1.1.9)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - ReactiveViewModel (0.3):
+    - ReactiveCocoa (~> 2.4)
+  - RegexKitLite (4.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SSZipArchive (1.1)
+  - SVProgressHUD (2.0.3)
+  - TMCache (2.1.0)
+  - TPKeyboardAvoiding (1.3)
+  - YYText (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking
+  - BaiduMapKit
+  - CocoaLumberjack
+  - FMDB
+  - FSCalendar
+  - JDStatusBarNotification
+  - M80AttributedLabel
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - pop
+  - RDVTabBarController
+  - ReactiveCocoa
+  - ReactiveViewModel
+  - RegexKitLite
+  - SDWebImage
+  - SSZipArchive
+  - SVProgressHUD
+  - TMCache
+  - TPKeyboardAvoiding
+  - YYText
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  FSCalendar: d8b9dddaf96fff7621a33b110763d981bb01bc04
+  JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
+  M80AttributedLabel: 0857084a609ec615ed383a9cf31c1ea7f4e4110d
+  Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
+  TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
+  YYText: 41761822986179828a27ccf82aa97c7b5483c2e2
+
+COCOAPODS: 0.39.0
