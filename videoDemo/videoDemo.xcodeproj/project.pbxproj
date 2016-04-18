@@ -14,6 +14,15 @@
 		AA2019CE1CC0814500236A4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2019CD1CC0814500236A4D /* Assets.xcassets */; };
 		AA2019DC1CC0814500236A4D /* videoDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019DB1CC0814500236A4D /* videoDemoTests.m */; };
 		AA2019E71CC0814500236A4D /* videoDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019E61CC0814500236A4D /* videoDemoUITests.m */; };
+		AA78E8141CC271D4005722A0 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8131CC271D4005722A0 /* start.png */; };
+		AA78E8161CC271DA005722A0 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8151CC271DA005722A0 /* stop.png */; };
+		AA78E8191CC274CC005722A0 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8171CC274CC005722A0 /* forward.png */; };
+		AA78E81A1CC274CC005722A0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8181CC274CC005722A0 /* back.png */; };
+		AA7A53671CC319FB00A7B5BE /* PBJStrobeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53601CC319FB00A7B5BE /* PBJStrobeView.m */; };
+		AA7A53681CC319FB00A7B5BE /* PBJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53621CC319FB00A7B5BE /* PBJViewController.m */; };
+		AA7A53691CC319FB00A7B5BE /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53641CC319FB00A7B5BE /* PBJVision.m */; };
+		AA7A536A1CC319FB00A7B5BE /* PBJVisionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53661CC319FB00A7B5BE /* PBJVisionUtilities.m */; };
+		AA90CF2D1CC237A600F32BF5 /* ora_startup_movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AA90CF2C1CC237A600F32BF5 /* ora_startup_movie.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +59,19 @@
 		AA2019E21CC0814500236A4D /* videoDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = videoDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2019E61CC0814500236A4D /* videoDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoDemoUITests.m; sourceTree = "<group>"; };
 		AA2019E81CC0814500236A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA78E8131CC271D4005722A0 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		AA78E8151CC271DA005722A0 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		AA78E8171CC274CC005722A0 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
+		AA78E8181CC274CC005722A0 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		AA7A535F1CC319FB00A7B5BE /* PBJStrobeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJStrobeView.h; sourceTree = "<group>"; };
+		AA7A53601CC319FB00A7B5BE /* PBJStrobeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJStrobeView.m; sourceTree = "<group>"; };
+		AA7A53611CC319FB00A7B5BE /* PBJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJViewController.h; sourceTree = "<group>"; };
+		AA7A53621CC319FB00A7B5BE /* PBJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJViewController.m; sourceTree = "<group>"; };
+		AA7A53631CC319FB00A7B5BE /* PBJVision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVision.h; sourceTree = "<group>"; };
+		AA7A53641CC319FB00A7B5BE /* PBJVision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVision.m; sourceTree = "<group>"; };
+		AA7A53651CC319FB00A7B5BE /* PBJVisionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVisionUtilities.h; sourceTree = "<group>"; };
+		AA7A53661CC319FB00A7B5BE /* PBJVisionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVisionUtilities.m; sourceTree = "<group>"; };
+		AA90CF2C1CC237A600F32BF5 /* ora_startup_movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ora_startup_movie.mp4; sourceTree = "<group>"; };
 		B58595A12D734313BC2B5512 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +143,8 @@
 		AA2019C01CC0814500236A4D /* videoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AA7A535E1CC319FB00A7B5BE /* PBJVIsion */,
+				AA90CF2B1CC237A600F32BF5 /* Resources */,
 				AA2019C41CC0814500236A4D /* AppDelegate.h */,
 				AA2019C51CC0814500236A4D /* AppDelegate.m */,
 				AA2019C71CC0814500236A4D /* ViewController.h */,
@@ -156,6 +180,33 @@
 				AA2019E81CC0814500236A4D /* Info.plist */,
 			);
 			path = videoDemoUITests;
+			sourceTree = "<group>";
+		};
+		AA7A535E1CC319FB00A7B5BE /* PBJVIsion */ = {
+			isa = PBXGroup;
+			children = (
+				AA7A535F1CC319FB00A7B5BE /* PBJStrobeView.h */,
+				AA7A53601CC319FB00A7B5BE /* PBJStrobeView.m */,
+				AA7A53611CC319FB00A7B5BE /* PBJViewController.h */,
+				AA7A53621CC319FB00A7B5BE /* PBJViewController.m */,
+				AA7A53631CC319FB00A7B5BE /* PBJVision.h */,
+				AA7A53641CC319FB00A7B5BE /* PBJVision.m */,
+				AA7A53651CC319FB00A7B5BE /* PBJVisionUtilities.h */,
+				AA7A53661CC319FB00A7B5BE /* PBJVisionUtilities.m */,
+			);
+			path = PBJVIsion;
+			sourceTree = "<group>";
+		};
+		AA90CF2B1CC237A600F32BF5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA78E8151CC271DA005722A0 /* stop.png */,
+				AA78E8131CC271D4005722A0 /* start.png */,
+				AA78E8171CC274CC005722A0 /* forward.png */,
+				AA78E8181CC274CC005722A0 /* back.png */,
+				AA90CF2C1CC237A600F32BF5 /* ora_startup_movie.mp4 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +279,12 @@
 				TargetAttributes = {
 					AA2019BD1CC0814500236A4D = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = DC3DP2UZ7D;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					AA2019D61CC0814500236A4D = {
 						CreatedOnToolsVersion = 7.2;
@@ -265,6 +322,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2019CE1CC0814500236A4D /* Assets.xcassets in Resources */,
+				AA78E8161CC271DA005722A0 /* stop.png in Resources */,
+				AA78E81A1CC274CC005722A0 /* back.png in Resources */,
+				AA78E8141CC271D4005722A0 /* start.png in Resources */,
+				AA90CF2D1CC237A600F32BF5 /* ora_startup_movie.mp4 in Resources */,
+				AA78E8191CC274CC005722A0 /* forward.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,9 +399,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7A53671CC319FB00A7B5BE /* PBJStrobeView.m in Sources */,
 				AA2019C91CC0814500236A4D /* ViewController.m in Sources */,
 				AA2019C61CC0814500236A4D /* AppDelegate.m in Sources */,
+				AA7A53681CC319FB00A7B5BE /* PBJViewController.m in Sources */,
+				AA7A53691CC319FB00A7B5BE /* PBJVision.m in Sources */,
 				AA2019C31CC0814500236A4D /* main.m in Sources */,
+				AA7A536A1CC319FB00A7B5BE /* PBJVisionUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +526,7 @@
 			baseConfigurationReference = 4A1DA8651CA8C80BBB80AA46 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = videoDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemo;
@@ -472,6 +539,7 @@
 			baseConfigurationReference = 64C422380631CB50D5CB98F6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = videoDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemo;
