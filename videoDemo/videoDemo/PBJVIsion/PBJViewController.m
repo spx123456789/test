@@ -151,7 +151,7 @@
     
     CGRect flipFrame = _flipButton.frame;
     flipFrame.size = CGSizeMake(25.0f, 20.0f);
-    flipFrame.origin = CGPointMake(10.0f, CGRectGetHeight(self.view.bounds) - 10.0f);
+    flipFrame.origin = CGPointMake(20.0f, CGRectGetHeight(self.view.bounds) - 30.0f);
     _flipButton.frame = flipFrame;
     
     [_flipButton addTarget:self action:@selector(_handleFlipButton:) forControlEvents:UIControlEventTouchUpInside];

@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16123E8E1CC605B800031557 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16123E8B1CC605B800031557 /* BaseViewController.m */; };
+		16123E8F1CC605B800031557 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16123E8D1CC605B800031557 /* ViewController.m */; };
+		16123E911CC60BC100031557 /* record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16123E901CC60BC100031557 /* record@2x.png */; };
+		16123E971CC60E3A00031557 /* capture_flip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16123E921CC60E3A00031557 /* capture_flip@2x.png */; };
+		16123E981CC60E3A00031557 /* capture_rec_base@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16123E931CC60E3A00031557 /* capture_rec_base@2x.png */; };
+		16123E991CC60E3A00031557 /* capture_rec_blink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16123E941CC60E3A00031557 /* capture_rec_blink@2x.png */; };
+		16123E9A1CC60E3A00031557 /* capture_rec_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16123E951CC60E3A00031557 /* capture_rec_off@2x.png */; };
+		16123E9B1CC60E3A00031557 /* capture_yep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16123E961CC60E3A00031557 /* capture_yep@2x.png */; };
 		83CFFB057C7C18326C4C140D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B58595A12D734313BC2B5512 /* libPods.a */; };
 		AA2019C31CC0814500236A4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019C21CC0814500236A4D /* main.m */; };
 		AA2019C61CC0814500236A4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019C51CC0814500236A4D /* AppDelegate.m */; };
-		AA2019C91CC0814500236A4D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019C81CC0814500236A4D /* ViewController.m */; };
 		AA2019CE1CC0814500236A4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2019CD1CC0814500236A4D /* Assets.xcassets */; };
 		AA2019DC1CC0814500236A4D /* videoDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019DB1CC0814500236A4D /* videoDemoTests.m */; };
 		AA2019E71CC0814500236A4D /* videoDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019E61CC0814500236A4D /* videoDemoUITests.m */; };
-		AA78E8141CC271D4005722A0 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8131CC271D4005722A0 /* start.png */; };
-		AA78E8161CC271DA005722A0 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8151CC271DA005722A0 /* stop.png */; };
-		AA78E8191CC274CC005722A0 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8171CC274CC005722A0 /* forward.png */; };
-		AA78E81A1CC274CC005722A0 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8181CC274CC005722A0 /* back.png */; };
+		AA78E8141CC271D4005722A0 /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8131CC271D4005722A0 /* start@2x.png */; };
+		AA78E8161CC271DA005722A0 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8151CC271DA005722A0 /* stop@2x.png */; };
+		AA78E8191CC274CC005722A0 /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8171CC274CC005722A0 /* forward@2x.png */; };
+		AA78E81A1CC274CC005722A0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA78E8181CC274CC005722A0 /* back@2x.png */; };
 		AA7A53671CC319FB00A7B5BE /* PBJStrobeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53601CC319FB00A7B5BE /* PBJStrobeView.m */; };
 		AA7A53681CC319FB00A7B5BE /* PBJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53621CC319FB00A7B5BE /* PBJViewController.m */; };
 		AA7A53691CC319FB00A7B5BE /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53641CC319FB00A7B5BE /* PBJVision.m */; };
@@ -43,14 +50,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16123E8A1CC605B800031557 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		16123E8B1CC605B800031557 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		16123E8C1CC605B800031557 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		16123E8D1CC605B800031557 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		16123E901CC60BC100031557 /* record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record@2x.png"; sourceTree = "<group>"; };
+		16123E921CC60E3A00031557 /* capture_flip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_flip@2x.png"; sourceTree = "<group>"; };
+		16123E931CC60E3A00031557 /* capture_rec_base@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_rec_base@2x.png"; sourceTree = "<group>"; };
+		16123E941CC60E3A00031557 /* capture_rec_blink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_rec_blink@2x.png"; sourceTree = "<group>"; };
+		16123E951CC60E3A00031557 /* capture_rec_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_rec_off@2x.png"; sourceTree = "<group>"; };
+		16123E961CC60E3A00031557 /* capture_yep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_yep@2x.png"; sourceTree = "<group>"; };
 		4A1DA8651CA8C80BBB80AA46 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		64C422380631CB50D5CB98F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA2019BE1CC0814500236A4D /* videoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = videoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2019C21CC0814500236A4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA2019C41CC0814500236A4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AA2019C51CC0814500236A4D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AA2019C71CC0814500236A4D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AA2019C81CC0814500236A4D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AA2019CD1CC0814500236A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA2019D21CC0814500236A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2019D71CC0814500236A4D /* videoDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = videoDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,10 +74,10 @@
 		AA2019E21CC0814500236A4D /* videoDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = videoDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2019E61CC0814500236A4D /* videoDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoDemoUITests.m; sourceTree = "<group>"; };
 		AA2019E81CC0814500236A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA78E8131CC271D4005722A0 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
-		AA78E8151CC271DA005722A0 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
-		AA78E8171CC274CC005722A0 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
-		AA78E8181CC274CC005722A0 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		AA78E8131CC271D4005722A0 /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
+		AA78E8151CC271DA005722A0 /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
+		AA78E8171CC274CC005722A0 /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@2x.png"; sourceTree = "<group>"; };
+		AA78E8181CC274CC005722A0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		AA7A535F1CC319FB00A7B5BE /* PBJStrobeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJStrobeView.h; sourceTree = "<group>"; };
 		AA7A53601CC319FB00A7B5BE /* PBJStrobeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJStrobeView.m; sourceTree = "<group>"; };
 		AA7A53611CC319FB00A7B5BE /* PBJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJViewController.h; sourceTree = "<group>"; };
@@ -101,6 +116,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16123E891CC6056B00031557 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16123E8A1CC605B800031557 /* BaseViewController.h */,
+				16123E8B1CC605B800031557 /* BaseViewController.m */,
+				16123E8C1CC605B800031557 /* ViewController.h */,
+				16123E8D1CC605B800031557 /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		5559A151FD55834CB5C9DB6F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,12 +169,11 @@
 		AA2019C01CC0814500236A4D /* videoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				16123E891CC6056B00031557 /* Controllers */,
 				AA7A535E1CC319FB00A7B5BE /* PBJVIsion */,
 				AA90CF2B1CC237A600F32BF5 /* Resources */,
 				AA2019C41CC0814500236A4D /* AppDelegate.h */,
 				AA2019C51CC0814500236A4D /* AppDelegate.m */,
-				AA2019C71CC0814500236A4D /* ViewController.h */,
-				AA2019C81CC0814500236A4D /* ViewController.m */,
 				AA2019CD1CC0814500236A4D /* Assets.xcassets */,
 				AA2019D21CC0814500236A4D /* Info.plist */,
 				AA2019C11CC0814500236A4D /* Supporting Files */,
@@ -200,10 +225,16 @@
 		AA90CF2B1CC237A600F32BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AA78E8151CC271DA005722A0 /* stop.png */,
-				AA78E8131CC271D4005722A0 /* start.png */,
-				AA78E8171CC274CC005722A0 /* forward.png */,
-				AA78E8181CC274CC005722A0 /* back.png */,
+				16123E921CC60E3A00031557 /* capture_flip@2x.png */,
+				16123E931CC60E3A00031557 /* capture_rec_base@2x.png */,
+				16123E941CC60E3A00031557 /* capture_rec_blink@2x.png */,
+				16123E951CC60E3A00031557 /* capture_rec_off@2x.png */,
+				16123E961CC60E3A00031557 /* capture_yep@2x.png */,
+				16123E901CC60BC100031557 /* record@2x.png */,
+				AA78E8151CC271DA005722A0 /* stop@2x.png */,
+				AA78E8131CC271D4005722A0 /* start@2x.png */,
+				AA78E8171CC274CC005722A0 /* forward@2x.png */,
+				AA78E8181CC274CC005722A0 /* back@2x.png */,
 				AA90CF2C1CC237A600F32BF5 /* ora_startup_movie.mp4 */,
 			);
 			path = Resources;
@@ -322,11 +353,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2019CE1CC0814500236A4D /* Assets.xcassets in Resources */,
-				AA78E8161CC271DA005722A0 /* stop.png in Resources */,
-				AA78E81A1CC274CC005722A0 /* back.png in Resources */,
-				AA78E8141CC271D4005722A0 /* start.png in Resources */,
+				16123E9A1CC60E3A00031557 /* capture_rec_off@2x.png in Resources */,
+				16123E981CC60E3A00031557 /* capture_rec_base@2x.png in Resources */,
+				AA78E8161CC271DA005722A0 /* stop@2x.png in Resources */,
+				16123E911CC60BC100031557 /* record@2x.png in Resources */,
+				AA78E81A1CC274CC005722A0 /* back@2x.png in Resources */,
+				AA78E8141CC271D4005722A0 /* start@2x.png in Resources */,
 				AA90CF2D1CC237A600F32BF5 /* ora_startup_movie.mp4 in Resources */,
-				AA78E8191CC274CC005722A0 /* forward.png in Resources */,
+				16123E9B1CC60E3A00031557 /* capture_yep@2x.png in Resources */,
+				16123E991CC60E3A00031557 /* capture_rec_blink@2x.png in Resources */,
+				16123E971CC60E3A00031557 /* capture_flip@2x.png in Resources */,
+				AA78E8191CC274CC005722A0 /* forward@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,11 +437,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7A53671CC319FB00A7B5BE /* PBJStrobeView.m in Sources */,
-				AA2019C91CC0814500236A4D /* ViewController.m in Sources */,
 				AA2019C61CC0814500236A4D /* AppDelegate.m in Sources */,
+				16123E8F1CC605B800031557 /* ViewController.m in Sources */,
 				AA7A53681CC319FB00A7B5BE /* PBJViewController.m in Sources */,
 				AA7A53691CC319FB00A7B5BE /* PBJVision.m in Sources */,
 				AA2019C31CC0814500236A4D /* main.m in Sources */,
+				16123E8E1CC605B800031557 /* BaseViewController.m in Sources */,
 				AA7A536A1CC319FB00A7B5BE /* PBJVisionUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,8 +566,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = videoDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oradt.youkong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -541,8 +580,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = videoDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oradt.youkong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -553,7 +593,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = videoDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oradt.youkong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/videoDemo.app/videoDemo";
 			};
@@ -565,7 +605,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = videoDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oradt.youkong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/videoDemo.app/videoDemo";
 			};
@@ -576,7 +616,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = videoDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemoUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oradt.youkong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = videoDemo;
 				USES_XCTRUNNER = YES;
@@ -588,7 +628,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = videoDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ora.videoDemoUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oradt.youkong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = videoDemo;
 				USES_XCTRUNNER = YES;
