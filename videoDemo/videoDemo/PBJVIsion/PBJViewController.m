@@ -74,7 +74,7 @@
 
 - (void)_setup
 {
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor redColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
@@ -102,13 +102,14 @@
     CGRect previewFrame = CGRectZero;
     previewFrame.origin = CGPointMake(0, 60.0f);
     CGFloat previewWidth = self.view.frame.size.width;
-    previewFrame.size = CGSizeMake(previewWidth, previewWidth);
+    previewFrame.size = CGSizeMake(previewWidth-200, self.view.frame.size.height-60);
     _previewView.frame = previewFrame;
 
     // add AV layer
     _previewLayer = [[PBJVision sharedInstance] previewLayer];
     CGRect previewBounds = _previewView.layer.bounds;
-    _previewLayer.bounds = previewBounds;
+    _previewLayer.bounds = CGRectMake(60, 0, previewBounds.size.height, previewBounds.size.width);
+    _previewLayer.affineTransform=CGAffineTransformMakeRotation(-M_PI/2);
     _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     _previewLayer.position = CGPointMake(CGRectGetMidX(previewBounds), CGRectGetMidY(previewBounds));
     [_previewView.layer addSublayer:_previewLayer];
@@ -163,18 +164,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
     [self _resetCapture];
     [[PBJVision sharedInstance] startPreview];
 }
-
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
     [[PBJVision sharedInstance] stopPreview];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 }
 
 #pragma mark - private start/stop helper methods
