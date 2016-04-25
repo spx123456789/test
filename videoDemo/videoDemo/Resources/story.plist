@@ -9,94 +9,51 @@
 				<key>type</key>
 				<integer>0</integer>
 				<key>id</key>
-				<string></string>
+				<string>1</string>
 			</dict>
 			<dict>
 				<key>type</key>
 				<integer>1</integer>
 				<key>id</key>
-				<string></string>
+				<string>1</string>
 			</dict>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>id</key>
-				<string></string>
+				<string>2</string>
 			</dict>
 			<dict>
 				<key>type</key>
 				<integer>1</integer>
 				<key>id</key>
-				<string></string>
+				<string>2</string>
 			</dict>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>id</key>
-				<string></string>
+				<string>3</string>
 			</dict>
 			<dict>
 				<key>type</key>
 				<integer>1</integer>
 				<key>id</key>
-				<string></string>
+				<string>3</string>
 			</dict>
+            <dict>
+                <key>type</key>
+                <integer>0</integer>
+                <key>id</key>
+                <string>4</string>
+            </dict>
 		</array>
 		<key>id</key>
 		<string>1</string>
 		<key>title</key>
-		<string>title</string>
+		<string>致我们即将逝去的青春</string>
 		<key>thumb</key>
-		<string>url</string>
-		<key>video</key>
-		<string>url</string>
-	</dict>
-	<dict>
-		<key>section</key>
-		<array>
-			<dict>
-				<key>type</key>
-				<integer>0</integer>
-				<key>id</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<integer>1</integer>
-				<key>id</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<integer>0</integer>
-				<key>id</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<integer>1</integer>
-				<key>id</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<integer>0</integer>
-				<key>id</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<integer>1</integer>
-				<key>id</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>id</key>
-		<string>2</string>
-		<key>title</key>
-		<string>title</string>
-		<key>thumb</key>
-		<string>url</string>
+		<string>s1</string>
 		<key>video</key>
 		<string>url</string>
 	</dict>
