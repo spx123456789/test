@@ -6,8 +6,8 @@
 //  Copyright © 2016年 SHANPX. All rights reserved.
 //
 
-#import "VedioHistory.h"
-@implementation VedioHistory
+#import "VideoHistory.h"
+@implementation VideoHistory
 
 - (id)init
 {

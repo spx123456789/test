@@ -36,8 +36,8 @@
 		AA0B20331CCCF3E600E1AAD1 /* SMAVPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0B20311CCCF3E600E1AAD1 /* SMAVPlayerViewController.xib */; };
 		AA0B20371CCCF45600E1AAD1 /* SMSliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B20361CCCF45600E1AAD1 /* SMSliderBar.m */; };
 		AA0B203E1CCCF49700E1AAD1 /* UserVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B20391CCCF49600E1AAD1 /* UserVideo.m */; };
-		AA0B203F1CCCF49700E1AAD1 /* VedioHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B203B1CCCF49600E1AAD1 /* VedioHistory.m */; };
-		AA0B20401CCCF49700E1AAD1 /* VedioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B203D1CCCF49700E1AAD1 /* VedioModel.m */; };
+		AA0B203F1CCCF49700E1AAD1 /* VideoHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B203B1CCCF49600E1AAD1 /* VideoHistory.m */; };
+		AA0B20401CCCF49700E1AAD1 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B203D1CCCF49700E1AAD1 /* VideoModel.m */; };
 		AA0B20431CCCF88500E1AAD1 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0B20421CCCF88500E1AAD1 /* CollectionViewCell.m */; };
 		AA2019C31CC0814500236A4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019C21CC0814500236A4D /* main.m */; };
 		AA2019C61CC0814500236A4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2019C51CC0814500236A4D /* AppDelegate.m */; };
@@ -56,6 +56,9 @@
 		AA7A53691CC319FB00A7B5BE /* PBJVision.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53641CC319FB00A7B5BE /* PBJVision.m */; };
 		AA7A536A1CC319FB00A7B5BE /* PBJVisionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7A53661CC319FB00A7B5BE /* PBJVisionUtilities.m */; };
 		AA90CF2D1CC237A600F32BF5 /* ora_startup_movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AA90CF2C1CC237A600F32BF5 /* ora_startup_movie.mp4 */; };
+		EAA50DBE1CCDE2E5008E794C /* material.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA50DBB1CCDE2E5008E794C /* material.plist */; };
+		EAA50DBF1CCDE2E5008E794C /* story.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA50DBC1CCDE2E5008E794C /* story.plist */; };
+		EAA50DC01CCDE2E5008E794C /* script.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA50DBD1CCDE2E5008E794C /* script.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,10 +120,10 @@
 		AA0B20361CCCF45600E1AAD1 /* SMSliderBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSliderBar.m; sourceTree = "<group>"; };
 		AA0B20381CCCF49600E1AAD1 /* UserVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVideo.h; sourceTree = "<group>"; };
 		AA0B20391CCCF49600E1AAD1 /* UserVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVideo.m; sourceTree = "<group>"; };
-		AA0B203A1CCCF49600E1AAD1 /* VedioHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VedioHistory.h; sourceTree = "<group>"; };
-		AA0B203B1CCCF49600E1AAD1 /* VedioHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VedioHistory.m; sourceTree = "<group>"; };
-		AA0B203C1CCCF49600E1AAD1 /* VedioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VedioModel.h; sourceTree = "<group>"; };
-		AA0B203D1CCCF49700E1AAD1 /* VedioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VedioModel.m; sourceTree = "<group>"; };
+		AA0B203A1CCCF49600E1AAD1 /* VideoHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoHistory.h; sourceTree = "<group>"; };
+		AA0B203B1CCCF49600E1AAD1 /* VideoHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoHistory.m; sourceTree = "<group>"; };
+		AA0B203C1CCCF49600E1AAD1 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
+		AA0B203D1CCCF49700E1AAD1 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		AA0B20411CCCF88500E1AAD1 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		AA0B20421CCCF88500E1AAD1 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		AA2019BE1CC0814500236A4D /* videoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = videoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +159,9 @@
 		AA7A53661CC319FB00A7B5BE /* PBJVisionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVisionUtilities.m; sourceTree = "<group>"; };
 		AA90CF2C1CC237A600F32BF5 /* ora_startup_movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ora_startup_movie.mp4; sourceTree = "<group>"; };
 		B58595A12D734313BC2B5512 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAA50DBB1CCDE2E5008E794C /* material.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = material.plist; sourceTree = "<group>"; };
+		EAA50DBC1CCDE2E5008E794C /* story.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = story.plist; sourceTree = "<group>"; };
+		EAA50DBD1CCDE2E5008E794C /* script.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = script.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,10 +350,10 @@
 			children = (
 				AA0B20381CCCF49600E1AAD1 /* UserVideo.h */,
 				AA0B20391CCCF49600E1AAD1 /* UserVideo.m */,
-				AA0B203A1CCCF49600E1AAD1 /* VedioHistory.h */,
-				AA0B203B1CCCF49600E1AAD1 /* VedioHistory.m */,
-				AA0B203C1CCCF49600E1AAD1 /* VedioModel.h */,
-				AA0B203D1CCCF49700E1AAD1 /* VedioModel.m */,
+				AA0B203A1CCCF49600E1AAD1 /* VideoHistory.h */,
+				AA0B203B1CCCF49600E1AAD1 /* VideoHistory.m */,
+				AA0B203C1CCCF49600E1AAD1 /* VideoModel.h */,
+				AA0B203D1CCCF49700E1AAD1 /* VideoModel.m */,
 				AA3646781CCC7930005383EB /* StoryModel.h */,
 				AA3646791CCC7930005383EB /* StoryModel.m */,
 			);
@@ -383,6 +389,9 @@
 		AA90CF2B1CC237A600F32BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EAA50DBB1CCDE2E5008E794C /* material.plist */,
+				EAA50DBC1CCDE2E5008E794C /* story.plist */,
+				EAA50DBD1CCDE2E5008E794C /* script.plist */,
 				16123E921CC60E3A00031557 /* capture_flip@2x.png */,
 				16123E931CC60E3A00031557 /* capture_rec_base@2x.png */,
 				16123E941CC60E3A00031557 /* capture_rec_blink@2x.png */,
@@ -517,6 +526,7 @@
 				16123E981CC60E3A00031557 /* capture_rec_base@2x.png in Resources */,
 				AA0B20251CCCD1F100E1AAD1 /* play_stop.png in Resources */,
 				AA78E8161CC271DA005722A0 /* stop@2x.png in Resources */,
+				EAA50DC01CCDE2E5008E794C /* script.plist in Resources */,
 				16123E911CC60BC100031557 /* record@2x.png in Resources */,
 				AA78E81A1CC274CC005722A0 /* back@2x.png in Resources */,
 				AA78E8141CC271D4005722A0 /* start@2x.png in Resources */,
@@ -533,6 +543,8 @@
 				AA0B20241CCCD1F100E1AAD1 /* play_start@2x.png in Resources */,
 				AA0B20201CCCD1F100E1AAD1 /* IMG_0199.PNG in Resources */,
 				AA78E8191CC274CC005722A0 /* forward@2x.png in Resources */,
+				EAA50DBE1CCDE2E5008E794C /* material.plist in Resources */,
+				EAA50DBF1CCDE2E5008E794C /* story.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,9 +624,9 @@
 				AA0B202B1CCCE6EA00E1AAD1 /* ViewController.m in Sources */,
 				AA2019C61CC0814500236A4D /* AppDelegate.m in Sources */,
 				AA7A53681CC319FB00A7B5BE /* PBJViewController.m in Sources */,
-				AA0B20401CCCF49700E1AAD1 /* VedioModel.m in Sources */,
+				AA0B20401CCCF49700E1AAD1 /* VideoModel.m in Sources */,
 				AA0B20371CCCF45600E1AAD1 /* SMSliderBar.m in Sources */,
-				AA0B203F1CCCF49700E1AAD1 /* VedioHistory.m in Sources */,
+				AA0B203F1CCCF49700E1AAD1 /* VideoHistory.m in Sources */,
 				AA0B20131CCCCFA300E1AAD1 /* MBProgressHUD.m in Sources */,
 				AA0B20431CCCF88500E1AAD1 /* CollectionViewCell.m in Sources */,
 				AA0B200A1CCCCF3000E1AAD1 /* NSDate+SMDate.m in Sources */,

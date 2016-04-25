@@ -11,7 +11,7 @@
 #import "FMDB.h"
 #import "UserVideo.h"
 
-@interface VedioHistory : NSObject
+@interface VideoHistory : NSObject
 @property(nonatomic,strong) FMDatabase *db;
 @property (strong, nonatomic) NSMutableArray *arrDataSource;
 @property (strong,nonatomic) NSMutableArray *arrsql;
