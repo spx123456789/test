@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VedioModel : NSObject
+@interface VideoModel : NSObject
 
 @property (nonatomic, strong) NSString *strUserID;      //用户ID
 @property (nonatomic, strong) NSString *strSchedule;    //播放进度

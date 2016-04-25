@@ -10,8 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SMSliderBar.h"
 #import "MBMessageTip.h"
-#import "VedioModel.h"
-#import "VedioHistory.h"
+#import "VideoModel.h"
+#import "VideoHistory.h"
 #import "PBJViewController.h"
 #import "menuViewController.h"
 
@@ -117,7 +117,7 @@
     //NSString *urlStr= @"http://7xoour.com2.z0.glb.qiniucdn.com/9605401000";
     _currentTime = 0;
     [self savePayHistory];
-    VedioModel *vedioModel = _arrVedio[videoIndex];
+    VideoModel *vedioModel = _arrVedio[videoIndex];
     NSString *urlStr =[vedioModel.strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url=[NSURL URLWithString:urlStr];
     /*获取总帧数与帧率
@@ -440,9 +440,9 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    VedioModel *vedioModel = _arrVedio[subscript];
-    VedioHistory *vedioHistory = [[VedioHistory alloc] init];
-    [vedioHistory insertTitle:vedioModel.strTitle createTime:dateString userId:[NSNumber numberWithInt:[vedioModel.strUserID intValue]] videoType:[NSNumber numberWithInt:vedioModel.vedioType]  playTime:[NSNumber numberWithInteger:self.currentTime] videoUrl:vedioModel.strURL picUrl:vedioModel.strImage];
+    VideoModel *videoModel = _arrVedio[subscript];
+    VideoHistory *vedioHistory = [[VideoHistory alloc] init];
+    [vedioHistory insertTitle:videoModel.strTitle createTime:dateString userId:[NSNumber numberWithInt:[videoModel.strUserID intValue]] videoType:[NSNumber numberWithInt:videoModel.vedioType]  playTime:[NSNumber numberWithInteger:self.currentTime] videoUrl:videoModel.strURL picUrl:videoModel.strImage];
 }
 
 //视频未播放时禁止点击

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SMAVPlayerViewController.h"
-#import "VedioModel.h"
+#import "VideoModel.h"
 #import "ViewController.h"
 @interface AppDelegate ()
 
@@ -25,26 +25,26 @@
     SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc] initWithNibName:@"SMAVPlayerViewController" bundle:nil];
     NSMutableArray *arrVedio = [NSMutableArray array];
     for (NSInteger i = 0 ; i < 2; i++) {
-        VedioModel *vedioModel = [[VedioModel alloc] init];
+        VideoModel *videoModel = [[VideoModel alloc] init];
         switch (i) {
             case  0:
-                vedioModel.strURL = @"http://221.229.165.31:80/play/274CF5C996AFCE2C751D315B5D1BF131B8C08208/298088%5Fstandard.mp4";
-                vedioModel.strTitle = @"娲石集团：人品铸产品";
+                videoModel.strURL = @"http://221.229.165.31:80/play/274CF5C996AFCE2C751D315B5D1BF131B8C08208/298088%5Fstandard.mp4";
+                videoModel.strTitle = @"娲石集团：人品铸产品";
                 break;
             case  1:
-                vedioModel.strURL = @"http://7xoour.com2.z0.glb.qiniucdn.com/fdbe32614a1167756be2a65721e15c59";
-                vedioModel.strTitle = @"精伦电子";
+                videoModel.strURL = @"http://7xoour.com2.z0.glb.qiniucdn.com/fdbe32614a1167756be2a65721e15c59";
+                videoModel.strTitle = @"精伦电子";
                 break;
             case  2:
-                vedioModel.strURL = @"http://7xoour.com2.z0.glb.qiniucdn.com/0ca32443a48076a75e6b534b64a4c221";
-                vedioModel.strTitle = @"德骼拜尔";
+                videoModel.strURL = @"http://7xoour.com2.z0.glb.qiniucdn.com/0ca32443a48076a75e6b534b64a4c221";
+                videoModel.strTitle = @"德骼拜尔";
                 break;
             default:
                 break;
         }
-        vedioModel.vedioType = 1;
-        vedioModel.strUserID = @"1";
-        [arrVedio addObject:vedioModel];
+        videoModel.vedioType = 1;
+        videoModel.strUserID = @"1";
+        [arrVedio addObject:videoModel];
     }
     playerVC.arrVedio = arrVedio;
 

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 SHANPX. All rights reserved.
 //
 
-#import "VedioModel.h"
+#import "VideoModel.h"
 
-@implementation VedioModel
+@implementation VideoModel
 
 
 @end
