@@ -78,6 +78,10 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    UIButton *backButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-160, 0, 60, 60)];
+    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [self.view addSubview:backButton];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
     // done button
     _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -160,11 +164,15 @@
 }
 
 #pragma mark - view lifecycle
-
+-(void)back:(UIButton*)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self.navigationController setNavigationBarHidden:YES];
+
     [self _resetCapture];
     [[PBJVision sharedInstance] startPreview];
 }
@@ -218,7 +226,7 @@
     vision.delegate = self;
     [vision setCameraMode:PBJCameraModeVideo];
     [vision setCameraDevice:PBJCameraDeviceBack];
-    [vision setCameraOrientation:PBJCameraOrientationPortrait];
+    [vision setCameraOrientation:PBJCameraOrientationLandscapeRight];
     [vision setFocusMode:PBJFocusModeAutoFocus];
 }
 

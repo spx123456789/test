@@ -46,7 +46,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:self.topCollection];
     [self.view addSubview:self.bottomCollection];
     
