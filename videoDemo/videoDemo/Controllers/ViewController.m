@@ -10,6 +10,8 @@
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "PBJViewController.h"
+#import "menuViewController.h"
+
 
 #define BUTTON_SPACE 60
 #define FRAME_WIDTH self.view.frame.size.width
@@ -25,6 +27,14 @@
 @property(strong, nonatomic) AVPlayer *player;
 @property (nonatomic,strong) UIProgressView *progressView;
 @property (nonatomic,strong) NSTimer *timer;
+@property (strong, nonatomic) id timeObserver;                      //视频播放时间观察者
+@property (assign, nonatomic) float totalTime;                      //视频总时长
+@property (assign, nonatomic) BOOL isHasMovie;                      //是否进行过移动
+@property (assign, nonatomic) BOOL isBottomViewHide;                //底部的view是否隐藏
+@property (assign, nonatomic) NSInteger subscript;                  //数组下标，记录当前播放视频
+@property (assign, nonatomic) NSInteger currentTime;                //当前视频播放时间位置
+
+
 @end
 
 @implementation ViewController
@@ -119,9 +129,40 @@
         weakSelf.progressView.progress = CMTimeGetSeconds(time)/CMTimeGetSeconds(weakSelf.player.currentItem.duration);
     }];
 }
+- (void)videoSlierChangeValue:(id)sender {
+    UISlider *slider = (UISlider *)sender;
+    NSLog(@"value change:%f",slider.value);
+    
+    if (slider.value == 0.000000) {
+        __weak typeof(self) weakSelf = self;
+        [self.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
+            [weakSelf.player play];
+        }];
+    }
+}
+- (void)videoSlierChangeValueEnd:(id)sender {
+    UISlider *slider = (UISlider *)sender;
+    NSLog(@"value end:%f",slider.value);
+    CMTime changedTime = CMTimeMakeWithSeconds(slider.value, 1);
+    
+    __weak typeof(self) weakSelf = self;
+    [self.player seekToTime:changedTime completionHandler:^(BOOL finished) {
+        [weakSelf.player play];
+//        [weakSelf.stateButton setTitle:@"Stop" forState:UIControlStateNormal];
+    }];
+}
+- (void)customVideoSlider:(CMTime)duration {
+//    self.videoSlider.maximumValue = CMTimeGetSeconds(duration);
+//    UIGraphicsBeginImageContextWithOptions((CGSize){ 1, 1 }, NO, 0.0f);
+//    UIImage *transparentImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    [self.videoSlider setMinimumTrackImage:transparentImage forState:UIControlStateNormal];
+//    [self.videoSlider setMaximumTrackImage:transparentImage forState:UIControlStateNormal];
+}
+
 
 - (void)backClick {
-
 }
 
 - (void)forwardClick {
@@ -129,6 +170,9 @@
 }
 
 - (void)recordClick {
+    
+//    menuViewController *menu=[[menuViewController alloc]init];
+    
     PBJViewController *controller = [[PBJViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
