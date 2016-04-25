@@ -6,61 +6,31 @@
 		<key>id</key>
 		<string>1</string>
 		<key>time</key>
-		<string></string>
+		<integer>6</integer>
 		<key>word</key>
-		<string></string>
+		<string>哈哈</string>
 		<key>thumb</key>
-		<string></string>
+		<string>sc1</string>
 	</dict>
-    <dict>
-        <key>id</key>
-        <string>1</string>
-        <key>time</key>
-        <string></string>
-        <key>word</key>
-        <string></string>
-        <key>thumb</key>
-        <string></string>
-    </dict>
-    <dict>
-        <key>id</key>
-        <string>1</string>
-        <key>time</key>
-        <string></string>
-        <key>word</key>
-        <string></string>
-        <key>thumb</key>
-        <string></string>
-    </dict>
-    <dict>
-        <key>id</key>
-        <string>1</string>
-        <key>time</key>
-        <string></string>
-        <key>word</key>
-        <string></string>
-        <key>thumb</key>
-        <string></string>
-    </dict>
-    <dict>
-        <key>id</key>
-        <string>1</string>
-        <key>time</key>
-        <string></string>
-        <key>word</key>
-        <string></string>
-        <key>thumb</key>
-        <string></string>
-    </dict>
-    <dict>
-        <key>id</key>
-        <string>1</string>
-        <key>time</key>
-        <string></string>
-        <key>word</key>
-        <string></string>
-        <key>thumb</key>
-        <string></string>
-    </dict>
+	<dict>
+		<key>id</key>
+		<string>2</string>
+		<key>time</key>
+		<integer>6</integer>
+		<key>word</key>
+		<string>呵呵</string>
+		<key>thumb</key>
+		<string>sc2</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<string>3</string>
+		<key>time</key>
+		<integer>6</integer>
+		<key>word</key>
+		<string>吼吼</string>
+		<key>thumb</key>
+		<string>sc3</string>
+	</dict>
 </array>
 </plist>

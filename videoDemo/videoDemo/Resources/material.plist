@@ -6,49 +6,33 @@
 		<key>id</key>
 		<string>1</string>
 		<key>thumb</key>
-		<string>url</string>
+		<string>m1</string>
 		<key>video</key>
 		<string>url</string>
 	</dict>
 	<dict>
 		<key>id</key>
-		<string>1</string>
+		<string>2</string>
 		<key>thumb</key>
-		<string>url</string>
+		<string>m2</string>
 		<key>video</key>
 		<string>url</string>
 	</dict>
 	<dict>
 		<key>id</key>
-		<string>1</string>
+		<string>3</string>
 		<key>thumb</key>
-		<string>url</string>
+		<string>m3</string>
 		<key>video</key>
 		<string>url</string>
 	</dict>
 	<dict>
 		<key>id</key>
-		<string>1</string>
+		<string>4</string>
 		<key>thumb</key>
-		<string>url</string>
+		<string>m4</string>
 		<key>video</key>
 		<string>url</string>
 	</dict>
-	<dict>
-		<key>id</key>
-		<string>1</string>
-		<key>thumb</key>
-		<string>url</string>
-		<key>video</key>
-		<string>url</string>
-	</dict>
-	<dict>
-		<key>id</key>
-		<string>1</string>
-		<key>thumb</key>
-		<string>url</string>
-		<key>video</key>
-		<string>url</string>
-	</dict>
-</array>
+	</array>
 </plist>
