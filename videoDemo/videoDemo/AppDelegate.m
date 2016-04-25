@@ -48,7 +48,7 @@
     }
     playerVC.arrVedio = arrVedio;
 
-    UINavigationController *navaController=[[UINavigationController alloc]initWithRootViewController:viewcontroller];
+    UINavigationController *navaController=[[UINavigationController alloc]initWithRootViewController:playerVC];
     self.window.rootViewController=navaController;
     [self.window makeKeyAndVisible];
 
