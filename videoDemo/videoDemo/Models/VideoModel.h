@@ -19,8 +19,8 @@
 @property (nonatomic, assign) int vedioType;            //当前视频类型 1是预置视频 2是用户可录视频
 @property (nonatomic, assign) NSInteger strIndex;       //当前视频位置
 @property (nonatomic, strong) NSString *vedioID;        //当前视频ID
-
-
+@property (nonatomic,strong) NSNumber *videoTime;       //录制时长
+@property (nonatomic,copy) NSString *videoWord;         //台词
 
 
 @end

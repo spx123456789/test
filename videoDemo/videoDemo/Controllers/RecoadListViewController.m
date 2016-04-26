@@ -73,6 +73,9 @@
                     model.strURL=[scriptdic objectForKey:@"video"];
                     model.strImage=[scriptdic objectForKey:@"thumb"];
                     model.vedioType=2;
+                    model.videoWord=[scriptdic objectForKey:@"word"];
+                    model.videoTime=[scriptdic objectForKey:@"time"];
+
                     [mutArr addObject:model];
                 }
             }

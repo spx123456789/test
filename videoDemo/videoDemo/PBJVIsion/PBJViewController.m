@@ -164,6 +164,8 @@
     strobeFrame.origin = CGPointMake(15.0f, 15.0f);
     _strobeView.frame = strobeFrame;
     [self.view addSubview:_strobeView];
+    
+    
 }
 
 #pragma mark - view lifecycle
@@ -178,6 +180,11 @@
 
     [self _resetCapture];
     [[PBJVision sharedInstance] startPreview];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(60, 60, 200, ScreenHeight-60)];
+    label.numberOfLines=0;
+    label.text=self.videoModel.videoWord;
+    label.textColor=[UIColor blackColor];
+    [self.view addSubview:label];
 }
 -(BOOL)prefersStatusBarHidden
 {
