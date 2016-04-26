@@ -78,41 +78,23 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-    UIButton *backButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-160, 0, 60, 60)];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    [self.view addSubview:backButton];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
-    // done button
-    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _doneButton.frame = CGRectMake(viewWidth - 20.0f - 20.0f, 20.0f, 20.0f, 20.0f);
     
-    UIImage *buttonImage = [UIImage imageNamed:@"capture_yep"];
-    [_doneButton setImage:buttonImage forState:UIControlStateNormal];
     
-    [_doneButton addTarget:self action:@selector(_handleDoneButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_doneButton];
-    
-    // elapsed time and red dot
-    _strobeView = [[PBJStrobeView alloc] initWithFrame:CGRectZero];
-    CGRect strobeFrame = _strobeView.frame;
-    strobeFrame.origin = CGPointMake(15.0f, 15.0f);
-    _strobeView.frame = strobeFrame;
-    [self.view addSubview:_strobeView];
 
     // preview
     _previewView = [[UIView alloc] initWithFrame:CGRectZero];
     _previewView.backgroundColor = [UIColor blackColor];
     CGRect previewFrame = CGRectZero;
-    previewFrame.origin = CGPointMake(0, 60.0f);
+    previewFrame.origin = CGPointMake(0, 0);
     CGFloat previewWidth = self.view.frame.size.width;
-    previewFrame.size = CGSizeMake(previewWidth-200, self.view.frame.size.height-60);
+    previewFrame.size = CGSizeMake(previewWidth, self.view.frame.size.height);
     _previewView.frame = previewFrame;
 
     // add AV layer
     _previewLayer = [[PBJVision sharedInstance] previewLayer];
     CGRect previewBounds = _previewView.layer.bounds;
-    _previewLayer.bounds = CGRectMake(60, 0, previewBounds.size.height, previewBounds.size.width);
+    _previewLayer.bounds = CGRectMake(0, 0, previewBounds.size.height, previewBounds.size.width);
     _previewLayer.affineTransform=CGAffineTransformMakeRotation(-M_PI/2);
     _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     _previewLayer.position = CGPointMake(CGRectGetMidX(previewBounds), CGRectGetMidY(previewBounds));
@@ -161,6 +143,27 @@
     
     [_flipButton addTarget:self action:@selector(_handleFlipButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_flipButton];
+    
+    UIButton *backButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-160, 0, 60, 60)];
+    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [self.view addSubview:backButton];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // done button
+    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _doneButton.frame = CGRectMake(viewWidth - 20.0f - 20.0f, 20.0f, 20.0f, 20.0f);
+    
+    UIImage *buttonImage = [UIImage imageNamed:@"capture_yep"];
+    [_doneButton setImage:buttonImage forState:UIControlStateNormal];
+    
+    [_doneButton addTarget:self action:@selector(_handleDoneButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_doneButton];
+    // elapsed time and red dot
+    _strobeView = [[PBJStrobeView alloc] initWithFrame:CGRectZero];
+    CGRect strobeFrame = _strobeView.frame;
+    strobeFrame.origin = CGPointMake(15.0f, 15.0f);
+    _strobeView.frame = strobeFrame;
+    [self.view addSubview:_strobeView];
 }
 
 #pragma mark - view lifecycle

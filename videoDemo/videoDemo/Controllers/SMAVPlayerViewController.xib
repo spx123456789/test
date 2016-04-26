@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SMAVPlayerViewController">
             <connections>
+                <outlet property="backButton" destination="LHg-wE-q1l" id="bUs-IP-Bjl"/>
                 <outlet property="btnNetx" destination="fKS-Eo-0QU" id="dUN-nQ-TFG"/>
                 <outlet property="btnPause" destination="gnw-Dd-dhm" id="k8e-bQ-wRb"/>
                 <outlet property="imageViewLogin" destination="pum-GR-Kcl" id="A43-R2-Lgq"/>

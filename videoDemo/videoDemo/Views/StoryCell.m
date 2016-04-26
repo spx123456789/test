@@ -22,9 +22,10 @@
 -(void)configCellWithModel:(StoryModel *)model
 {
     _model=model;
-    self.videorecordButton.backgroundColor=[UIColor greenColor];
-    self.videoThumbnailView.backgroundColor=[UIColor greenColor];
-
+    [self.videorecordButton setImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
+    self.videoThumbnailView.image=[UIImage imageNamed:model.thumb];
+    self.titleLabel.text=model.title;
+    
 }
 -(void)setupSubviews
 {
@@ -32,10 +33,12 @@
 
     self.videorecordButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [self.videorecordButton addTarget:self action:@selector(videorecordButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.videorecordButton setImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
-    
-    [self.contentView addSubview:self.videorecordButton];
     self.videoThumbnailView=[[UIImageView alloc]init];
+    self.titleLabel=[[UILabel alloc]init];
+    self.titleLabel.textColor=[UIColor blackColor];
+    
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.videorecordButton];
     [self.contentView addSubview:self.videoThumbnailView];
 
     [self.videoThumbnailView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -52,6 +55,13 @@
         make.top.equalTo(self.contentView.mas_top);
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.width.equalTo(@100);
+    }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self);
+        make.left.equalTo(self.videoThumbnailView.mas_right).offset(50);
+        make.top.equalTo(self.contentView.mas_top).offset(30);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-30);
+        make.right.equalTo(self.videorecordButton.mas_left).offset(10);
     }];
     
 }

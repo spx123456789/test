@@ -22,10 +22,22 @@
     }
     return self;
 }
+-(void)configCellWithModel:(VideoModel *)model
+{
+    _videoModel=model;
+    self.imageView.image=[UIImage imageNamed:model.strImage];
+    
+}
 
 @end
 
 @implementation BottomCollectionCell
+-(void)configCellWithModel:(VideoModel *)model
+{
+    _videoModel=model;
+    self.imageView.image=[UIImage imageNamed:model.strImage];
+    
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

@@ -8,6 +8,7 @@
 
 #import "menuViewController.h"
 #import "RecoadListViewController.h"
+
 @interface menuViewController ()
 @property (nonatomic,assign) NSInteger selectIndex;
 @end
@@ -20,6 +21,21 @@
 }
 -(void)viewDidLoad
 {
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
+    NSMutableArray *data = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    self.dataSource=[[NSMutableArray alloc]init];
+
+    for (NSDictionary *dic in data) {
+        StoryModel *model=[[StoryModel alloc]init];
+        model.thumb=[dic objectForKey:@"thumb"];
+        model.localID=[dic objectForKey:@"id"];
+        model.itemArray=[NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
+        model.videoUrl=[dic objectForKey:@"video"];
+        model.title=[dic objectForKey:@"title"];
+        [self.dataSource addObject:model];
+    }
+    
     NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"S",@"W",@"P",@"D",@"ME",nil];
     //初始化UISegmentedControl
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
@@ -58,7 +74,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dataSource.count;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -72,22 +88,23 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.Delegate=self;
     }
-    [cell configCellWithModel:nil];
+    StoryModel *model=[self.dataSource objectAtIndex:indexPath.row];
+    [cell configCellWithModel:model];
     return cell;
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 70.0f;
+    return 100.0f;
 
 }
 
 -(void)videorecordButtonDidSelected:(StoryCell*)cell
 {
     RecoadListViewController *controller=[[RecoadListViewController alloc]init];
+    controller.datasoure=cell.model.itemArray;
     [self.navigationController pushViewController:controller animated:YES];
-    
 
 }
 

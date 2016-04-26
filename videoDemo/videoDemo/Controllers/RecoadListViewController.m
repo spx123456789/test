@@ -21,6 +21,8 @@
     if (!_topCollection) {
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        flowLayout.minimumLineSpacing=100;
+
         _topCollection=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, 150) collectionViewLayout:flowLayout];
         _topCollection.dataSource=self;
         _topCollection.delegate=self;
@@ -46,6 +48,44 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *materialplistPath = [[NSBundle mainBundle] pathForResource:@"material" ofType:@"plist"];
+    NSMutableArray *materialdata = [[NSMutableArray alloc] initWithContentsOfFile:materialplistPath];
+    NSString *scriptplistPath = [[NSBundle mainBundle] pathForResource:@"script" ofType:@"plist"];
+    NSMutableArray *scriptData = [[NSMutableArray alloc] initWithContentsOfFile:scriptplistPath];
+    NSMutableArray *mutArr=[[NSMutableArray alloc]init];
+    for (NSDictionary *dic in self.datasoure) {
+        if ([[dic objectForKey:@"type"] integerValue]==0) {
+            for (NSDictionary *materialdic in materialdata) {
+                if ([[materialdic objectForKey:@"id"] isEqualToString:[dic objectForKey:@"id"]]) {
+                    VideoModel *model=[[VideoModel alloc]init];
+                    model.vedioID=[materialdic objectForKey:@"id"];
+                    model.strURL=[materialdic objectForKey:@"video"];
+                    model.strImage=[materialdic objectForKey:@"thumb"];
+                    model.vedioType=1;
+                    [mutArr addObject:model];
+                }
+            }
+        }else{
+            for (NSDictionary *scriptdic in scriptData) {
+                if ([[scriptdic objectForKey:@"id"] isEqualToString:[dic objectForKey:@"id"]]) {
+                    VideoModel *model=[[VideoModel alloc]init];
+                    model.vedioID=[scriptdic objectForKey:@"id"];
+                    model.strURL=[scriptdic objectForKey:@"video"];
+                    model.strImage=[scriptdic objectForKey:@"thumb"];
+                    model.vedioType=2;
+                    [mutArr addObject:model];
+                }
+            }
+
+        }
+        
+        
+    }
+    VideoModel *model=[[VideoModel alloc]init];
+    model.strImage=@"capture_yep";
+    [mutArr addObject:model];
+    self.datasoure=mutArr;
+    
     self.view.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:self.topCollection];
     [self.view addSubview:self.bottomCollection];
@@ -67,9 +107,9 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == _topCollection) {
-        return 20;
+        return self.datasoure.count;
     } else {
-        return 18;
+        return self.datasoure.count-1;
     }
 }
 
@@ -80,15 +120,16 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    VideoModel *model=[self.datasoure objectAtIndex:indexPath.item];
     if (collectionView == _topCollection) {
         static NSString * CellIdentifier1 = @"TopCollectionCell";
         TopCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier1 forIndexPath:indexPath];
-        cell.imageView.image = [UIImage imageNamed:@"stop"];
+        [cell configCellWithModel:model];
         return cell;
     } else {
         static NSString * CellIdentifier = @"BottomCollectionCell";
         BottomCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-        cell.imageView.image = [UIImage imageNamed:@"start"];
+        [cell configCellWithModel:model];
         return cell;
     }
 }
@@ -104,13 +145,24 @@
     }
 }
 
+
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
+    if (collectionView == _topCollection) {
+        return UIEdgeInsetsMake(5, 5, 5, 5);
+    } else {
+        return UIEdgeInsetsMake(5, 5, 5, 5);
+    }
+
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item==(self.datasoure.count-1)) {
+       //拼接这些视频
+    }else{
     PBJViewController *controller = [[PBJViewController alloc] init];
+    controller.videoModel=[self.datasoure objectAtIndex:indexPath.item];
     [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 @end

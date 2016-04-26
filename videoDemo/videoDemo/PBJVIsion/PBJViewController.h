@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#include "VideoModel.h"
 @interface PBJViewController : UIViewController
-
+@property (nonatomic,strong) VideoModel *videoModel;
 @end

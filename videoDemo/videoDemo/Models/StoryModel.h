@@ -10,5 +10,8 @@
 
 @interface StoryModel : NSObject
 @property (nonatomic,copy) NSString *videoUrl;
-
+@property (nonatomic,copy) NSString *title;
+@property (nonatomic,copy) NSString *thumb;
+@property (nonatomic,copy) NSString *localID;
+@property (nonatomic,strong) NSMutableArray *itemArray;
 @end

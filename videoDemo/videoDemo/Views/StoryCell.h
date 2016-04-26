@@ -17,6 +17,7 @@
 @property (nonatomic,strong) UIButton  *videorecordButton;
 @property (nonatomic,weak) id<StoryCellDelegate>  Delegate;
 @property (nonatomic,strong) StoryModel  *model;
+@property (nonatomic,strong) UILabel *titleLabel;
 -(void)configCellWithModel:(StoryModel*)model;
 
 @end

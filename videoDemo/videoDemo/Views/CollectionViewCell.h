@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "VideoModel.h"
 @interface CollectionViewCell : UICollectionViewCell
 
 @end
 
 @interface TopCollectionCell : UICollectionViewCell
 @property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic,strong) VideoModel *videoModel;
+-(void)configCellWithModel:(VideoModel*)model;
+
 @end
 
 @interface BottomCollectionCell : UICollectionViewCell
 @property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic,strong) VideoModel *videoModel;
+-(void)configCellWithModel:(VideoModel*)model;
+
 @end

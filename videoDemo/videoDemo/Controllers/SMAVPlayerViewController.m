@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeTotal;       //总时间label
 @property (strong, nonatomic) AVPlayer *player;                     //播放器对象
 @property (strong, nonatomic) id timeObserver;                      //视频播放时间观察者
+@property (weak, nonatomic) IBOutlet UIButton *backButton;          //返回按钮
 @property (assign, nonatomic) float totalTime;                      //视频总时长
 @property (assign, nonatomic) BOOL isHasMovie;                      //是否进行过移动
 @property (assign, nonatomic) BOOL isBottomViewHide;                //底部的view是否隐藏
@@ -40,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.layer.cornerRadius=20;
     
     self.slider.type = SMSliderTypeHoz;
     self.slider.progressBgColor = [UIColor whiteColor];
@@ -65,6 +66,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.navigationController.viewControllers.count==1) {
+        self.backButton.hidden=YES;
+    }
     [self.navigationController setNavigationBarHidden:YES];
 
 }
@@ -91,7 +95,6 @@
     AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     playerLayer.frame = CGRectMake(0, 0, ScreenWidth ,ScreenHeight);
     [self.viewAvPlayer.layer addSublayer:playerLayer];
-    playerLayer.cornerRadius=18.0f;
 
     [self.player seekToTime:CMTimeMakeWithSeconds(self.startTime, 1000)];//设置播放位置1000 为帧率
     [_player play];
