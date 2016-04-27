@@ -41,21 +41,21 @@
 				<key>id</key>
 				<string>3</string>
 			</dict>
-            <dict>
-                <key>type</key>
-                <integer>0</integer>
-                <key>id</key>
-                <string>4</string>
-            </dict>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>id</key>
+				<string>4</string>
+			</dict>
 		</array>
 		<key>id</key>
 		<string>1</string>
 		<key>title</key>
-		<string>致我们即将逝去的青春</string>
+		<string>玉髓怎么玩</string>
 		<key>thumb</key>
 		<string>s1</string>
 		<key>video</key>
-		<string>url</string>
+		<string>story1</string>
 	</dict>
 </array>
 </plist>
