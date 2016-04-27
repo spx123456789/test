@@ -8,7 +8,7 @@
 		<key>thumb</key>
 		<string>m1</string>
 		<key>video</key>
-		<string>url</string>
+		<string>material1</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -16,7 +16,7 @@
 		<key>thumb</key>
 		<string>m2</string>
 		<key>video</key>
-		<string>url</string>
+		<string>material2</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -24,7 +24,7 @@
 		<key>thumb</key>
 		<string>m3</string>
 		<key>video</key>
-		<string>url</string>
+		<string>material3</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -32,7 +32,7 @@
 		<key>thumb</key>
 		<string>m4</string>
 		<key>video</key>
-		<string>url</string>
+		<string>material4</string>
 	</dict>
-	</array>
+</array>
 </plist>
