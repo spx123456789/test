@@ -13,9 +13,15 @@
 @end
 
 @implementation BaseViewController
-
+- (void)viewWillLayoutSubviews
+{
+    self.view.frame = CGRectMake(10, 10, ScreenWidth, ScreenHeight);
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor blackColor];
+    self.view.clipsToBounds=YES;
+
     // Do any additional setup after loading the view.
 }
 

@@ -10,7 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SMSliderBar.h"
 #import "MBMessageTip.h"
-#import "VideoModel.h"
 #import "VideoHistory.h"
 #import "PBJViewController.h"
 #import "menuViewController.h"
@@ -38,11 +37,16 @@
 
 @implementation SMAVPlayerViewController
 @synthesize subscript;
+- (void)viewWillLayoutSubviews
+{
+    self.view.frame = CGRectMake(10, 10, ScreenWidth, ScreenHeight);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.layer.cornerRadius=20;
-    
+    self.view.clipsToBounds=YES;
+    self.viewAvPlayer.clipsToBounds=YES;
     self.slider.type = SMSliderTypeHoz;
     self.slider.progressBgColor = [UIColor whiteColor];
     self.slider.isAllowDrag = YES;
@@ -60,15 +64,32 @@
     self.imageViewLogin.layer.cornerRadius = 34/2;
     splashTimer = [NSTimer scheduledTimerWithTimeInterval:1  target:self selector:@selector(roteImageView) userInfo:nil repeats:YES];
     self.viewAvPlayer.frame=CGRectMake(0, 0, ScreenWidth,ScreenHeight );
-     self.viewAvPlayer.backgroundColor=[UIColor redColor];
+    if (self.navigationController) {
+        UIButton *playButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-50, 0, 50, 30)];
+        [playButton setImage:[UIImage imageNamed:@"play_start"] forState:UIControlStateNormal];
+        [self.viewHead addSubview:playButton];
+        [playButton addTarget:self action:@selector(playButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     [[NSRunLoop currentRunLoop] addTimer:splashTimer forMode:NSRunLoopCommonModes];
 }
+
+-(void)playButtonPressed:(UIButton*)btn
+{
+    [self savePayHistory];
+    [self.player pause];
+    menuViewController *menu=[[menuViewController alloc]init];
+    [self.navigationController pushViewController:menu animated:YES];
+
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     if (self.navigationController.viewControllers.count==1) {
         self.backButton.hidden=YES;
     }
+    
     [self.navigationController setNavigationBarHidden:YES];
 
 }
@@ -122,7 +143,7 @@
     [self savePayHistory];
     VideoModel *vedioModel = _arrVedio[videoIndex];
     NSString *urlStr =[vedioModel.strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url=[NSURL URLWithString:urlStr];
+    NSURL *url=[[NSBundle mainBundle] URLForResource:urlStr withExtension:@".mp4"];
     /*获取总帧数与帧率
      NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
      forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
@@ -338,8 +359,6 @@
         [self.btnPause setTitle:@"暂停" forState:UIControlStateNormal];
         [self.btnPause setBackgroundImage:[UIImage imageNamed:@"play_stop.png"] forState:UIControlStateNormal];
     }else{
-        menuViewController *menu=[[menuViewController alloc]init];
-        [self.navigationController pushViewController:menu animated:YES];
         [_player pause];
         [self.btnPause setTitle:@"播放" forState:UIControlStateNormal];
         [self.btnPause setBackgroundImage:[UIImage imageNamed:@"play_start.png"] forState:UIControlStateNormal];

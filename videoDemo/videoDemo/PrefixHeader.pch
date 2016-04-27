@@ -20,7 +20,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIKit+AFNetworking.h>
 #import "TPKeyboardAvoidingTableView.h"
-#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
-#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define ScreenHeight ([[UIScreen mainScreen] bounds].size.height-20)
+#define ScreenWidth ([[UIScreen mainScreen] bounds].size.width-20)
 
 #endif /* PrefixHeader_pch */

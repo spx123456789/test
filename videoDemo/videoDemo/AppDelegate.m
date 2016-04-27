@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "SMAVPlayerViewController.h"
 #import "VideoModel.h"
-#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -20,24 +19,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor=[UIColor clearColor];
-    ViewController *viewcontroller=[[ViewController alloc]init];
+    self.window.backgroundColor=[UIColor redColor];
     SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc] initWithNibName:@"SMAVPlayerViewController" bundle:nil];
     NSMutableArray *arrVedio = [NSMutableArray array];
     for (NSInteger i = 0 ; i < 2; i++) {
         VideoModel *videoModel = [[VideoModel alloc] init];
         switch (i) {
             case  0:
-                videoModel.strURL = @"http://221.229.165.31:80/play/274CF5C996AFCE2C751D315B5D1BF131B8C08208/298088%5Fstandard.mp4";
-                videoModel.strTitle = @"娲石集团：人品铸产品";
+                videoModel.strURL =@"story1";
+                videoModel.strTitle = @"玉髓究竟怎么玩";
                 break;
             case  1:
-                videoModel.strURL = @"http://7xoour.com2.z0.glb.qiniucdn.com/fdbe32614a1167756be2a65721e15c59";
-                videoModel.strTitle = @"精伦电子";
+                videoModel.strURL =@"story1";
+                videoModel.strTitle = @"玉髓究竟怎么玩";
                 break;
             case  2:
-                videoModel.strURL = @"http://7xoour.com2.z0.glb.qiniucdn.com/0ca32443a48076a75e6b534b64a4c221";
-                videoModel.strTitle = @"德骼拜尔";
+                videoModel.strURL =@"story1";
+                videoModel.strTitle = @"玉髓究竟怎么玩";
                 break;
             default:
                 break;
