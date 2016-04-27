@@ -11,11 +11,13 @@
 #import "PBJViewController.h"
 #import "SMAVPlayerViewController.h"
 #import "VideoModel.h"
-
+#import <AVFoundation/AVFoundation.h>
 @interface RecoadListViewController ()<UICollectionViewDelegate,
                                        UICollectionViewDataSource>
 @property(nonatomic, strong) UICollectionView *topCollection;
 @property(nonatomic, strong) UICollectionView *bottomCollection;
+
+
 @end
 
 @implementation RecoadListViewController
@@ -59,6 +61,7 @@
 }
 - (void)viewDidLoad {
   [super viewDidLoad];
+    self.view.layer.cornerRadius = 20.0f;
   NSString *materialplistPath =
       [[NSBundle mainBundle] pathForResource:@"material" ofType:@"plist"];
   NSMutableArray *materialdata =
@@ -184,10 +187,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    VideoModel *model = [self.datasoure objectAtIndex:indexPath.item];
+
   if (indexPath.item == (self.datasoure.count - 1)) {
     //拼接这些视频
-  } else {
-    VideoModel *model = [self.datasoure objectAtIndex:indexPath.item];
+//      [VideoModel combineVideo:@"material1" toVideo:@"material2"];
+      [model mergeAndSave];
+       } else {
     if (model.vedioType == 1) {
       //预制视频
       SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc]

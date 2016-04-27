@@ -21,6 +21,5 @@
 @property (nonatomic, strong) NSString *vedioID;        //当前视频ID
 @property (nonatomic,strong) NSNumber *videoTime;       //录制时长
 @property (nonatomic,copy) NSString *videoWord;         //台词
-
-
++(void)mergeAndSave:(NSArray*)videos callback:(void (^)(BOOL isSucceed, NSString * videoUrl))block;
 @end

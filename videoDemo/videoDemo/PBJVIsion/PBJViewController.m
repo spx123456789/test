@@ -67,10 +67,8 @@
 }
 
 - (void)_setup {
-  self.view.backgroundColor = [UIColor greenColor];
   self.view.autoresizingMask =
       UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
   CGFloat viewWidth = CGRectGetWidth(self.view.frame);
 
   // preview
@@ -121,7 +119,7 @@
   CGRect flipFrame = _flipButton.frame;
   flipFrame.size = CGSizeMake(25.0f, 20.0f);
   flipFrame.origin =
-      CGPointMake(20.0f, CGRectGetHeight(self.view.bounds) - 30.0f);
+      CGPointMake(20.0f, ScreenHeight - 30.0f);
   _flipButton.frame = flipFrame;
 
   [_flipButton addTarget:self
