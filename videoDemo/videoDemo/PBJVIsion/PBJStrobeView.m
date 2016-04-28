@@ -51,7 +51,7 @@
 
         CGFloat padding = 4.0f;
     
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor clearColor];
         CGRect viewFrame = CGRectZero;
         viewFrame.size = CGSizeMake(100.0f, 30.0f);
         self.frame = viewFrame;

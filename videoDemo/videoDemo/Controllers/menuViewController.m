@@ -8,13 +8,48 @@
 
 #import "menuViewController.h"
 #import "RecoadListViewController.h"
-
+#import "VideoModel.h"
+#import "SMAVPlayerViewController.h"
 @interface menuViewController ()
 @property(nonatomic, assign) NSInteger selectIndex;
+@property(nonatomic, strong) NSMutableArray *dDataSourse;
+
+@property(nonatomic, strong) NSMutableArray *currentDatasourse;
 @end
 @implementation menuViewController
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                       NSUserDomainMask, YES);
+  NSString *path = [paths objectAtIndex:0];
+  NSString *filename = [path stringByAppendingPathComponent:@"story.plist"];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSMutableArray *array;
+  if (![fileManager fileExistsAtPath:filename]) {
+    array = [[NSMutableArray alloc] init];
+  } else {
+    array = [[NSMutableArray alloc] initWithContentsOfFile:filename];
+  }
+  self.dDataSourse = [[NSMutableArray alloc] init];
+  if (array.count) {
+    for (NSString *strname in array) {
+      NSString *plistPath =
+          [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
+      NSMutableArray *data =
+          [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+      NSDictionary *dic = data[0];
+      StoryModel *model = [[StoryModel alloc] init];
+      model.thumb = [dic objectForKey:@"thumb"];
+      model.localID = [dic objectForKey:@"id"];
+      model.itemArray =
+          [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
+      model.videoUrl = strname;
+      model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
+      model.ifDesk = YES;
+        [self.dDataSourse addObject:model];
+    }
+  }
+
   [self.navigationController setNavigationBarHidden:YES];
 }
 - (void)viewDidLoad {
@@ -23,6 +58,7 @@
   NSMutableArray *data =
       [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
   self.dataSource = [[NSMutableArray alloc] init];
+
   self.view.clipsToBounds = YES;
   self.view.layer.cornerRadius = 40.0f;
   self.view.backgroundColor = [UIColor blackColor];
@@ -36,7 +72,7 @@
     model.title = [dic objectForKey:@"title"];
     [self.dataSource addObject:model];
   }
-
+  self.currentDatasourse = [NSMutableArray arrayWithArray:self.dataSource];
   NSArray *segmentedArray =
       [[NSArray alloc] initWithObjects:@"S", @"W", @"P", @"D", @"ME", nil];
   //初始化UISegmentedControl
@@ -83,7 +119,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-  return self.dataSource.count;
+  return self.currentDatasourse.count;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each
@@ -101,9 +137,29 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.Delegate = self;
   }
-  StoryModel *model = [self.dataSource objectAtIndex:indexPath.row];
+  StoryModel *model = [self.currentDatasourse objectAtIndex:indexPath.row];
   [cell configCellWithModel:model];
   return cell;
+}
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    StoryModel *model = [self.currentDatasourse objectAtIndex:indexPath.row];
+
+    if (_selectIndex==3) {
+        //预制视频
+        SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc]
+                                              initWithNibName:@"SMAVPlayerViewController"
+                                              bundle:nil];
+        NSMutableArray *arrVedio = [NSMutableArray array];
+        VideoModel *vedioModel = [[VideoModel alloc] init];
+        vedioModel.strURL = model.videoUrl;
+        vedioModel.vedioType = 2;
+        vedioModel.strUserID = @"1";
+        [arrVedio addObject:vedioModel];
+        playerVC.arrVedio = arrVedio;
+        [self presentViewController:playerVC animated:YES completion:nil];
+  
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView
     heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,19 +178,26 @@
   //判断rootView是有已经有页面，如果有，应为删掉该页面然后在添加新页面
   if (Index == _selectIndex) {
   } else {
+      _selectIndex=Index;
     switch (Index) {
-      case 0:
-        [self.view addSubview:self.tableView];
-        break;
+      case 0: {
+          self.currentDatasourse = [NSMutableArray arrayWithArray:self.dataSource];
+        [self.tableView reloadData];
+      }
+
+      break;
       case 1:
 
         break;
       case 2:
 
         break;
-      case 3:
+      case 3: {
+          self.currentDatasourse = [NSMutableArray arrayWithArray:self.dDataSourse];
+        [self.tableView reloadData];
+      }
 
-        break;
+      break;
       default:
         break;
     }

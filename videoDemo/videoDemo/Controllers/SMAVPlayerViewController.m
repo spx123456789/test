@@ -142,8 +142,20 @@
     _currentTime = 0;
     [self savePayHistory];
     VideoModel *vedioModel = _arrVedio[videoIndex];
+    NSURL *url;
+    if (vedioModel.vedioType==2) {
+        NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *myPathDocs = [documentsDirectory
+                                stringByAppendingPathComponent:vedioModel.strURL];
+        url = [NSURL fileURLWithPath:myPathDocs];
+    }else{
     NSString *urlStr =[vedioModel.strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url=[[NSBundle mainBundle] URLForResource:urlStr withExtension:@".mp4"];
+       url =[[NSBundle mainBundle] URLForResource:urlStr withExtension:@".mp4"];
+    }
+    
+    
     /*获取总帧数与帧率
      NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
      forKey:AVURLAssetPreferPreciseDurationAndTimingKey];

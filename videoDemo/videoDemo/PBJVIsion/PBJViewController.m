@@ -40,7 +40,7 @@
 
   UILongPressGestureRecognizer *_longPressGestureRecognizer;
   BOOL _recording;
-
+  BOOL _isrecording;
   ALAssetsLibrary *_assetLibrary;
   __block NSDictionary *_currentVideo;
 }
@@ -118,8 +118,7 @@
 
   CGRect flipFrame = _flipButton.frame;
   flipFrame.size = CGSizeMake(25.0f, 20.0f);
-  flipFrame.origin =
-      CGPointMake(20.0f, ScreenHeight - 30.0f);
+  flipFrame.origin = CGPointMake(20.0f, ScreenHeight - 30.0f);
   _flipButton.frame = flipFrame;
 
   [_flipButton addTarget:self
@@ -153,24 +152,58 @@
   strobeFrame.origin = CGPointMake(15.0f, 15.0f);
   _strobeView.frame = strobeFrame;
   [self.view addSubview:_strobeView];
+
+  CGFloat width = 300;
+  CGFloat height = 300;
+  UIImageView *imageView = [[UIImageView alloc]
+      initWithFrame:CGRectMake(ScreenWidth - width - 50, 70, width, height)];
+  UIImageView *imgView1 =
+      [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+  [imageView addSubview:imgView1];
+  imgView1.contentMode = UIViewContentModeTopLeft;
+  imgView1.image = [UIImage imageNamed:@"ic_border_topleft"];
+
+  UIImageView *imgView2 =
+      [[UIImageView alloc] initWithFrame:CGRectMake(width - 44, 0, 44, 44)];
+  [imageView addSubview:imgView2];
+  imgView2.contentMode = UIViewContentModeTopRight;
+  imgView2.image = [UIImage imageNamed:@"ic_border_topright"];
+
+  UIImageView *imgView3 =
+      [[UIImageView alloc] initWithFrame:CGRectMake(0, height - 44, 44, 44)];
+  [imageView addSubview:imgView3];
+  imgView3.contentMode = UIViewContentModeBottomLeft;
+  imgView3.image = [UIImage imageNamed:@"ic_border_bottomleft"];
+
+  UIImageView *imgView4 = [[UIImageView alloc]
+      initWithFrame:CGRectMake(width - 44, height - 44, 44, 44)];
+  [imageView addSubview:imgView4];
+  imgView4.contentMode = UIViewContentModeBottomRight;
+  imgView4.image = [UIImage imageNamed:@"ic_border_bottomright"];
+  [self.view addSubview:imageView];
 }
 
 #pragma mark - view lifecycle
 - (void)back:(UIButton *)btn {
   [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.view.layer.cornerRadius=20;
+    self.view.clipsToBounds=YES;
+}
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.navigationController setNavigationBarHidden:YES];
-
-  [self _resetCapture];
-  [[PBJVision sharedInstance] startPreview];
   UILabel *label = [[UILabel alloc]
       initWithFrame:CGRectMake(60, 60, 200, ScreenHeight - 60)];
   label.numberOfLines = 0;
   label.text = self.videoModel.videoWord;
   label.textColor = [UIColor blackColor];
   [self.view addSubview:label];
+  [self _resetCapture];
+  [[PBJVision sharedInstance] startPreview];
 }
 - (BOOL)prefersStatusBarHidden {
   return YES;
@@ -209,7 +242,7 @@
   PBJVision *vision = [PBJVision sharedInstance];
   vision.delegate = self;
   [vision setCameraMode:PBJCameraModeVideo];
-  [vision setCameraDevice:PBJCameraDeviceBack];
+  [vision setCameraDevice:PBJCameraDeviceFront];
   [vision setCameraOrientation:PBJCameraOrientationLandscapeRight];
   [vision setFocusMode:PBJFocusModeAutoFocus];
 }
@@ -227,10 +260,21 @@
 
 - (void)_handleDoneButton:(UIButton *)button {
   // resets long press
-  _longPressGestureRecognizer.enabled = NO;
-  _longPressGestureRecognizer.enabled = YES;
+  //  _longPressGestureRecognizer.enabled = NO;
+  //  _longPressGestureRecognizer.enabled = YES;
+  //    [self _endCapture];
 
-  [self _endCapture];
+  if (_isrecording) {
+    [self _pauseCapture];
+
+    _isrecording = !_isrecording;
+  } else {
+    _isrecording = !_isrecording;
+    if (!_recording)
+      [self _startCapture];
+    else
+      [self _resumeCapture];
+  }
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -241,26 +285,25 @@
 }
 
 #pragma mark - UIGestureRecognizer
-
 - (void)_handleLongPressGestureRecognizer:
     (UIGestureRecognizer *)gestureRecognizer {
-  switch (gestureRecognizer.state) {
-    case UIGestureRecognizerStateBegan: {
-      if (!_recording)
-        [self _startCapture];
-      else
-        [self _resumeCapture];
-      break;
-    }
-    case UIGestureRecognizerStateEnded:
-    case UIGestureRecognizerStateCancelled:
-    case UIGestureRecognizerStateFailed: {
-      [self _pauseCapture];
-      break;
-    }
-    default:
-      break;
-  }
+  //  switch (gestureRecognizer.state) {
+  //    case UIGestureRecognizerStateBegan: {
+  //      if (!_recording)
+  //        [self _startCapture];
+  //      else
+  //        [self _resumeCapture];
+  //      break;
+  //    }
+  //    case UIGestureRecognizerStateEnded:
+  //    case UIGestureRecognizerStateCancelled:
+  //    case UIGestureRecognizerStateFailed: {
+  //      [self _pauseCapture];
+  //      break;
+  //    }
+  //    default:
+  //      break;
+  //  }
 }
 
 #pragma mark - PBJVisionDelegate
@@ -326,17 +369,39 @@
   _currentVideo = videoDict;
 
   NSString *videoPath = [_currentVideo objectForKey:PBJVisionVideoPathKey];
-  [_assetLibrary
-      writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath]
-                         completionBlock:^(NSURL *assetURL, NSError *error1) {
-                           UIAlertView *alert = [[UIAlertView alloc]
-                                   initWithTitle:@"Saved!"
-                                         message:@"Saved to the camera roll."
-                                        delegate:self
-                               cancelButtonTitle:nil
-                               otherButtonTitles:@"OK", nil];
-                           [alert show];
-                         }];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                       NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *strurl = [NSString stringWithFormat:@"%@.mov", [NSDate date]];
+  NSString *toPath =
+      [NSString stringWithFormat:@"%@/%@", documentsDirectory, strurl];
+  _videoModel.strURL = strurl;
+
+  BOOL isSuccess =
+      [fileManager moveItemAtPath:videoPath toPath:toPath error:&error];
+  if (isSuccess) {
+    UIAlertView *alert =
+        [[UIAlertView alloc] initWithTitle:@"Saved!"
+                                   message:@"Saved to the camera roll."
+                                  delegate:self
+                         cancelButtonTitle:nil
+                         otherButtonTitles:@"OK", nil];
+    [alert show];
+  }
+  //  [_assetLibrary
+  //      writeVideoAtPathToSavedPhotosAlbum:[NSURL URLWithString:videoPath]
+  //                         completionBlock:^(NSURL *assetURL, NSError *error1)
+  //                         {
+  ////                           UIAlertView *alert = [[UIAlertView alloc]
+  ////                                   initWithTitle:@"Saved!"
+  ////                                         message:@"Saved to the camera
+  ///roll."
+  ////                                        delegate:self
+  ////                               cancelButtonTitle:nil
+  ////                               otherButtonTitles:@"OK", nil];
+  ////                           [alert show];
+  //                         }];
 }
 
 @end

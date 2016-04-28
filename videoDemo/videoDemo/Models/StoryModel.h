@@ -14,4 +14,7 @@
 @property (nonatomic,copy) NSString *thumb;
 @property (nonatomic,copy) NSString *localID;
 @property (nonatomic,strong) NSMutableArray *itemArray;
+
+@property (nonatomic,assign) BOOL ifDesk;
+
 @end

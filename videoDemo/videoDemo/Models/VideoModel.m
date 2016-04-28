@@ -82,17 +82,16 @@
   }];
 }
 
-+ (void)mergeAndSave:(NSArray *)videos
-            callback:(void (^)(BOOL isSucceed, NSString *videoUrl))block {
++(void)mergeAndSave:(NSArray*)videos
+{
+    
   NSMutableArray *videoAssets = [[NSMutableArray alloc] init];
   for (VideoModel *model in videos) {
     if (model.vedioType == 2) {
       NSArray *paths = NSSearchPathForDirectoriesInDomains(
           NSDocumentDirectory, NSUserDomainMask, YES);
       NSString *documentsDirectory = [paths objectAtIndex:0];
-      NSString *myPathDocs = [documentsDirectory
-          stringByAppendingPathComponent:
-              [NSString stringWithFormat:@"%@", model.videoPath]];
+        NSString *myPathDocs = [NSString stringWithFormat:@"%@/%@",documentsDirectory,model.strURL];
       NSURL *video_url = [NSURL fileURLWithPath:myPathDocs];
       AVAsset *asset = [AVAsset assetWithURL:video_url];
       [videoAssets addObject:asset];
@@ -105,26 +104,22 @@
     }
   }
 
-    AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
+ AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
   // 2 - Video track
   AVMutableCompositionTrack *firstTrack = [mixComposition
       addMutableTrackWithMediaType:AVMediaTypeVideo
                   preferredTrackID:kCMPersistentTrackID_Invalid];
     
-    AVAsset * tmpAVAsset;
-    int count=0;
-    CMTime *timer;
-    for (AVAsset *asset in videoAssets) {
-        
-        [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset.duration)
-                            ofTrack:[[asset tracksWithMediaType:AVMediaTypeVideo]
+    AVAsset *firstAsset = videoAssets[0];
+    [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration)
+                            ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo]
                                      objectAtIndex:0]
                              atTime:kCMTimeZero
                               error:nil];
         
-    }
+   AVAsset *secondAsset = videoAssets[1];
   
-  [firstTrack
+   [firstTrack
       insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration)
               ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeVideo]
                           objectAtIndex:0]
@@ -134,10 +129,9 @@
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                        NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *dateStr=[NSString stringWithFormat:@"%@.mov",[NSDate date]];
   NSString *myPathDocs = [documentsDirectory
-      stringByAppendingPathComponent:[NSString
-                                         stringWithFormat:@"mergeVideo-%d.mov",
-                                                          arc4random() % 1000]];
+      stringByAppendingPathComponent:dateStr];
   NSURL *url = [NSURL fileURLWithPath:myPathDocs];
   // 5 - Create exporter
   AVAssetExportSession *exporter = [[AVAssetExportSession alloc]
@@ -146,16 +140,18 @@
   exporter.outputURL = url;
   exporter.outputFileType = AVFileTypeQuickTimeMovie;
   exporter.shouldOptimizeForNetworkUse = YES;
+    __block NSString *outputURL=dateStr;
   [exporter exportAsynchronouslyWithCompletionHandler:^{
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [self exportDidFinish:exporter];
-    });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+        NSLog(@"%ld",(long)exporter.status);
+        if (exporter.status == AVAssetExportSessionStatusCompleted) {
+             NSLog(@"33333333333333333333333333");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"combine" object:outputURL];
+        }    });
+      
   }];
-}
-- (void)exportDidFinish:(AVAssetExportSession *)session {
-  if (session.status == AVAssetExportSessionStatusCompleted) {
-    NSURL *outputURL = session.outputURL;
-  }
+    NSLog(@"2222222222222222222222");
 }
 
 @end

@@ -12,11 +12,12 @@
 #import "SMAVPlayerViewController.h"
 #import "VideoModel.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SVProgressHUD.h"
 @interface RecoadListViewController ()<UICollectionViewDelegate,
                                        UICollectionViewDataSource>
 @property(nonatomic, strong) UICollectionView *topCollection;
 @property(nonatomic, strong) UICollectionView *bottomCollection;
-
+@property (nonatomic,strong) NSMutableArray *videos;
 
 @end
 
@@ -61,7 +62,8 @@
 }
 - (void)viewDidLoad {
   [super viewDidLoad];
-    self.view.layer.cornerRadius = 20.0f;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(combine:) name:@"combine" object:nil];
+   self.view.layer.cornerRadius = 20.0f;
   NSString *materialplistPath =
       [[NSBundle mainBundle] pathForResource:@"material" ofType:@"plist"];
   NSMutableArray *materialdata =
@@ -185,14 +187,69 @@
   }
 }
 
+-(void)combine:(NSNotification *)obj
+{
+    NSLog(@"11111111111111111111111111111%lu",(unsigned long)_videos.count);
+
+    if (_videos.count==1) {
+        [SVProgressHUD dismiss];
+        NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*path=[paths  objectAtIndex:0];
+        NSString *filename=[path stringByAppendingPathComponent:@"story.plist"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSMutableArray *array;
+        if (![fileManager fileExistsAtPath:filename]) {
+            array =[[NSMutableArray alloc]init];
+        }else{
+        array=[[NSMutableArray alloc]initWithContentsOfFile:filename];
+        }
+        [array addObject:obj.object];
+        [array writeToFile:filename atomically:YES];
+        
+        
+    }else{
+    if (!obj.object) {
+        NSArray *videos=[NSArray arrayWithObjects:_videos[0],_videos[1], nil];
+        [_videos removeObjectAtIndex:0];
+        [_videos removeObjectAtIndex:0];
+        [VideoModel mergeAndSave:videos];
+    }else{
+        VideoModel *model=[[VideoModel alloc]init];
+        model.strURL=obj.object;
+        model.vedioType=2;
+        NSArray *videos=[NSArray arrayWithObjects:model,_videos[0], nil];
+        [_videos removeObjectAtIndex:0];
+        [VideoModel mergeAndSave:videos];
+    }
+    }
+    
+}
+
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     VideoModel *model = [self.datasoure objectAtIndex:indexPath.item];
-
+    BOOL isComplete=YES;
   if (indexPath.item == (self.datasoure.count - 1)) {
     //拼接这些视频
-//      [VideoModel combineVideo:@"material1" toVideo:@"material2"];
-      [model mergeAndSave];
+      
+      _videos=[NSMutableArray arrayWithArray:self.datasoure];
+      for (int i=0; i<7;i++ ) {
+          VideoModel *vedioModel=_videos[i];
+          if (!vedioModel.strURL) {
+              isComplete=NO;
+              break;
+          }
+      }
+      if (isComplete) {
+          [SVProgressHUD showWithStatus:@"合成中。。。"];
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"combine" object:nil];
+          
+      }else{
+          UIAlertView *aleart=[[UIAlertView alloc]initWithTitle:@"还有未录制的视频，请录制" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil, nil];
+          [aleart show];
+      }
+      
+      
        } else {
     if (model.vedioType == 1) {
       //预制视频
@@ -214,4 +271,11 @@
     }
   }
 }
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+
 @end
