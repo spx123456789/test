@@ -28,10 +28,10 @@
     UICollectionViewFlowLayout *flowLayout =
         [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    flowLayout.minimumLineSpacing = 100;
+    flowLayout.minimumLineSpacing = 80;
 
     _topCollection = [[UICollectionView alloc]
-               initWithFrame:CGRectMake(0, 20, ScreenWidth, 150)
+               initWithFrame:CGRectMake(0, 20, ScreenWidth, 240)
         collectionViewLayout:flowLayout];
     _topCollection.dataSource = self;
     _topCollection.delegate = self;
@@ -49,7 +49,7 @@
         [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     _bottomCollection = [[UICollectionView alloc]
-               initWithFrame:CGRectMake(0, 210, ScreenWidth, 60)
+               initWithFrame:CGRectMake(0, 260, ScreenWidth, 60)
         collectionViewLayout:flowLayout];
     _bottomCollection.dataSource = self;
     _bottomCollection.delegate = self;
@@ -63,7 +63,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(combine:) name:@"combine" object:nil];
-   self.view.layer.cornerRadius = 20.0f;
+   self.view.layer.cornerRadius = CornerRadius;
   NSString *materialplistPath =
       [[NSBundle mainBundle] pathForResource:@"material" ofType:@"plist"];
   NSMutableArray *materialdata =
@@ -171,7 +171,7 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
   if (collectionView == _topCollection) {
-    return CGSizeMake(100, 100);
+    return CGSizeMake(200, 200);
   } else {
     return CGSizeMake(50, 50);
   }

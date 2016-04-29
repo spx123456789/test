@@ -44,7 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.layer.cornerRadius=20;
+    self.view.layer.cornerRadius=CornerRadius;
     self.view.clipsToBounds=YES;
     self.viewAvPlayer.clipsToBounds=YES;
     self.slider.type = SMSliderTypeHoz;

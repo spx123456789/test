@@ -36,6 +36,11 @@
 {
     _videoModel=model;
     self.imageView.image=[UIImage imageNamed:model.strImage];
+    if (_videoModel.vedioType != 2) {
+        [_markView setHidden:YES];
+    }else{
+        [_markView setHidden:NO];
+    }
     
 }
 
@@ -43,7 +48,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        _markView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        [_markView setBackgroundColor:[UIColor redColor]];
         [self addSubview:_imageView];
+        [self addSubview:_markView];
     }
     return self;
 }

@@ -19,36 +19,36 @@
 @implementation menuViewController
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                       NSUserDomainMask, YES);
-  NSString *path = [paths objectAtIndex:0];
-  NSString *filename = [path stringByAppendingPathComponent:@"story.plist"];
-  NSFileManager *fileManager = [NSFileManager defaultManager];
-  NSMutableArray *array;
-  if (![fileManager fileExistsAtPath:filename]) {
-    array = [[NSMutableArray alloc] init];
-  } else {
-    array = [[NSMutableArray alloc] initWithContentsOfFile:filename];
-  }
-  self.dDataSourse = [[NSMutableArray alloc] init];
-  if (array.count) {
-    for (NSString *strname in array) {
-      NSString *plistPath =
-          [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
-      NSMutableArray *data =
-          [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-      NSDictionary *dic = data[0];
-      StoryModel *model = [[StoryModel alloc] init];
-      model.thumb = [dic objectForKey:@"thumb"];
-      model.localID = [dic objectForKey:@"id"];
-      model.itemArray =
-          [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
-      model.videoUrl = strname;
-      model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
-      model.ifDesk = YES;
-        [self.dDataSourse addObject:model];
-    }
-  }
+//  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+//                                                       NSUserDomainMask, YES);
+//  NSString *path = [paths objectAtIndex:0];
+//  NSString *filename = [path stringByAppendingPathComponent:@"story.plist"];
+//  NSFileManager *fileManager = [NSFileManager defaultManager];
+//  NSMutableArray *array;
+//  if (![fileManager fileExistsAtPath:filename]) {
+//    array = [[NSMutableArray alloc] init];
+//  } else {
+//    array = [[NSMutableArray alloc] initWithContentsOfFile:filename];
+//  }
+//  self.dDataSourse = [[NSMutableArray alloc] init];
+//  if (array.count) {
+//    for (NSString *strname in array) {
+//      NSString *plistPath =
+//          [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
+//      NSMutableArray *data =
+//          [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+//      NSDictionary *dic = data[0];
+//      StoryModel *model = [[StoryModel alloc] init];
+//      model.thumb = [dic objectForKey:@"thumb"];
+//      model.localID = [dic objectForKey:@"id"];
+//      model.itemArray =
+//          [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
+//      model.videoUrl = strname;
+//      model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
+//      model.ifDesk = YES;
+//        [self.dDataSourse addObject:model];
+//    }
+//  }
 
   [self.navigationController setNavigationBarHidden:YES];
 }
@@ -60,7 +60,7 @@
   self.dataSource = [[NSMutableArray alloc] init];
 
   self.view.clipsToBounds = YES;
-  self.view.layer.cornerRadius = 40.0f;
+  self.view.layer.cornerRadius = CornerRadius;
   self.view.backgroundColor = [UIColor blackColor];
   for (NSDictionary *dic in data) {
     StoryModel *model = [[StoryModel alloc] init];
@@ -74,7 +74,7 @@
   }
   self.currentDatasourse = [NSMutableArray arrayWithArray:self.dataSource];
   NSArray *segmentedArray =
-      [[NSArray alloc] initWithObjects:@"S", @"W", @"P", @"D", @"ME", nil];
+      [[NSArray alloc] initWithObjects:@"Story", @"Material", @"Play", @"Desk", @"Me", nil];
   //初始化UISegmentedControl
   UISegmentedControl *segmentedControl =
       [[UISegmentedControl alloc] initWithItems:segmentedArray];
@@ -91,7 +91,7 @@
   [self.view addSubview:self.tableView];
 
   UIButton *playButton =
-      [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 50, 0, 50, 30)];
+      [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-50, 0, 50, 30)];
   [playButton setImage:[UIImage imageNamed:@"play_start"]
               forState:UIControlStateNormal];
   [self.view addSubview:playButton];

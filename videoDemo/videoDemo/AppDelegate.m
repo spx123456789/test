@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor=[UIColor redColor];
+    self.window.backgroundColor=[UIColor grayColor];
     SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc] initWithNibName:@"SMAVPlayerViewController" bundle:nil];
     NSMutableArray *arrVedio = [NSMutableArray array];
     for (NSInteger i = 0 ; i < 2; i++) {
