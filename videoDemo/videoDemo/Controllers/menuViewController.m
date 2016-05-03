@@ -19,36 +19,36 @@
 @implementation menuViewController
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-//  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-//                                                       NSUserDomainMask, YES);
-//  NSString *path = [paths objectAtIndex:0];
-//  NSString *filename = [path stringByAppendingPathComponent:@"story.plist"];
-//  NSFileManager *fileManager = [NSFileManager defaultManager];
-//  NSMutableArray *array;
-//  if (![fileManager fileExistsAtPath:filename]) {
-//    array = [[NSMutableArray alloc] init];
-//  } else {
-//    array = [[NSMutableArray alloc] initWithContentsOfFile:filename];
-//  }
-//  self.dDataSourse = [[NSMutableArray alloc] init];
-//  if (array.count) {
-//    for (NSString *strname in array) {
-//      NSString *plistPath =
-//          [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
-//      NSMutableArray *data =
-//          [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-//      NSDictionary *dic = data[0];
-//      StoryModel *model = [[StoryModel alloc] init];
-//      model.thumb = [dic objectForKey:@"thumb"];
-//      model.localID = [dic objectForKey:@"id"];
-//      model.itemArray =
-//          [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
-//      model.videoUrl = strname;
-//      model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
-//      model.ifDesk = YES;
-//        [self.dDataSourse addObject:model];
-//    }
-//  }
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                       NSUserDomainMask, YES);
+  NSString *path = [paths objectAtIndex:0];
+  NSString *filename = [path stringByAppendingPathComponent:@"story.plist"];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSMutableArray *array;
+  if (![fileManager fileExistsAtPath:filename]) {
+    array = [[NSMutableArray alloc] init];
+  } else {
+    array = [[NSMutableArray alloc] initWithContentsOfFile:filename];
+  }
+  self.dDataSourse = [[NSMutableArray alloc] init];
+  if (array.count) {
+    for (NSString *strname in array) {
+      NSString *plistPath =
+          [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
+      NSMutableArray *data =
+          [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+      NSDictionary *dic = data[0];
+      StoryModel *model = [[StoryModel alloc] init];
+      model.thumb = [dic objectForKey:@"thumb"];
+      model.localID = [dic objectForKey:@"id"];
+      model.itemArray =
+          [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
+      model.videoUrl = strname;
+      model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
+      model.ifDesk = YES;
+        [self.dDataSourse addObject:model];
+    }
+  }
 
   [self.navigationController setNavigationBarHidden:YES];
 }
