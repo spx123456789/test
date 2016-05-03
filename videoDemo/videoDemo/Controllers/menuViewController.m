@@ -173,6 +173,22 @@
   [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)videoPreviewButtonDidSelected:(StoryCell*)cell{
+    //预制视频
+    SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc]
+                                          initWithNibName:@"SMAVPlayerViewController"
+                                          bundle:nil];
+    NSMutableArray *arrVedio = [NSMutableArray array];
+    VideoModel *vedioModel = [[VideoModel alloc] init];
+    vedioModel.strURL = cell.model.videoUrl;
+    vedioModel.vedioType = 1;
+    vedioModel.strUserID = @"1";
+    [arrVedio addObject:vedioModel];
+    playerVC.arrVedio = arrVedio;
+    [self presentViewController:playerVC animated:YES completion:nil];
+}
+
+
 - (void)didClicksegmentedControlAction:(UISegmentedControl *)Seg {
   NSInteger Index = Seg.selectedSegmentIndex;
   //判断rootView是有已经有页面，如果有，应为删掉该页面然后在添加新页面
