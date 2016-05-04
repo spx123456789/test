@@ -234,8 +234,9 @@
 
 - (void)timeCountdown {
   lasttime--;
-    NSLog(@"------------------------------%li",(long)lasttime);
   if (lasttime == 0) {
+      [timer invalidate];
+
     [self _endCapture];
 
   } else {
@@ -347,7 +348,7 @@
 
   if (_isrecording) {
     [self _pauseCapture];
-
+      [timer invalidate];
     _isrecording = !_isrecording;
   } else {
     _isrecording = !_isrecording;
