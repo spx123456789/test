@@ -13,7 +13,7 @@
 
 @interface StoryCell : UITableViewCell
 
-@property (nonatomic,strong) UIImageView *videoThumbnailView;
+@property (nonatomic,strong) UIButton *videoPreviewButton;
 @property (nonatomic,strong) UIButton  *videorecordButton;
 @property (nonatomic,weak) id<StoryCellDelegate>  Delegate;
 @property (nonatomic,strong) StoryModel  *model;
@@ -26,5 +26,6 @@
 @protocol StoryCellDelegate <NSObject>
 @optional
 -(void)videorecordButtonDidSelected:(StoryCell*)cell;
+-(void)videoPreviewButtonDidSelected:(StoryCell*)cell;
 
 @end

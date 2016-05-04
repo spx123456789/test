@@ -10,19 +10,19 @@
 #import "GPUImageFramework.h"
 #import <AVFoundation/AVFoundation.h>
 @interface VideoModel ()
-@property(nonatomic, strong) NSURL *mixURL;
+//@property(nonatomic, strong) NSURL *mixURL;
 @property(nonatomic, copy) NSString *videoPath;
-@property(nonatomic, copy) NSString *videoPath2;
-@property(nonatomic, copy) NSURL *theEndVideoURL;
-@property(nonatomic, strong) NSMutableArray *audioMixParams;
-@property(nonatomic, strong) AVAsset *firstAsset;
-@property(nonatomic, strong) AVAsset *secondAsset;
-@property(nonatomic, strong) AVAsset *audioAsset;
+//@property(nonatomic, copy) NSString *videoPath2;
+//@property(nonatomic, copy) NSURL *theEndVideoURL;
+//@property(nonatomic, strong) NSMutableArray *audioMixParams;
+//@property(nonatomic, strong) AVAsset *firstAsset;
+//@property(nonatomic, strong) AVAsset *secondAsset;
+//@property(nonatomic, strong) AVAsset *audioAsset;
 
 @end
 
 @implementation VideoModel
-@synthesize audioMixParams, firstAsset, secondAsset, audioAsset;
+//@synthesize audioMixParams, firstAsset, secondAsset, audioAsset;
 + (void)combineVideo:(NSString *)videourl1 toVideo:(NSString *)videourl2 {
   NSString *urlStr1 = [videourl1
       stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

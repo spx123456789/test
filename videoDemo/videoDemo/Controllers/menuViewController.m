@@ -60,7 +60,7 @@
   self.dataSource = [[NSMutableArray alloc] init];
 
   self.view.clipsToBounds = YES;
-  self.view.layer.cornerRadius = 40.0f;
+  self.view.layer.cornerRadius = CornerRadius;
   self.view.backgroundColor = [UIColor blackColor];
   for (NSDictionary *dic in data) {
     StoryModel *model = [[StoryModel alloc] init];
@@ -74,7 +74,7 @@
   }
   self.currentDatasourse = [NSMutableArray arrayWithArray:self.dataSource];
   NSArray *segmentedArray =
-      [[NSArray alloc] initWithObjects:@"S", @"W", @"P", @"D", @"ME", nil];
+      [[NSArray alloc] initWithObjects:@"Story", @"Material", @"Play", @"Desk", @"Me", nil];
   //初始化UISegmentedControl
   UISegmentedControl *segmentedControl =
       [[UISegmentedControl alloc] initWithItems:segmentedArray];
@@ -91,7 +91,7 @@
   [self.view addSubview:self.tableView];
 
   UIButton *playButton =
-      [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 50, 0, 50, 30)];
+      [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-50, 0, 50, 30)];
   [playButton setImage:[UIImage imageNamed:@"play_start"]
               forState:UIControlStateNormal];
   [self.view addSubview:playButton];
@@ -172,6 +172,22 @@
   controller.datasoure = cell.model.itemArray;
   [self.navigationController pushViewController:controller animated:YES];
 }
+
+- (void)videoPreviewButtonDidSelected:(StoryCell*)cell{
+    //预制视频
+    SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc]
+                                          initWithNibName:@"SMAVPlayerViewController"
+                                          bundle:nil];
+    NSMutableArray *arrVedio = [NSMutableArray array];
+    VideoModel *vedioModel = [[VideoModel alloc] init];
+    vedioModel.strURL = cell.model.videoUrl;
+    vedioModel.vedioType = 1;
+    vedioModel.strUserID = @"1";
+    [arrVedio addObject:vedioModel];
+    playerVC.arrVedio = arrVedio;
+    [self presentViewController:playerVC animated:YES completion:nil];
+}
+
 
 - (void)didClicksegmentedControlAction:(UISegmentedControl *)Seg {
   NSInteger Index = Seg.selectedSegmentIndex;
