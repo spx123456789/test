@@ -181,7 +181,12 @@
     NSMutableArray *arrVedio = [NSMutableArray array];
     VideoModel *vedioModel = [[VideoModel alloc] init];
     vedioModel.strURL = cell.model.videoUrl;
-    vedioModel.vedioType = 1;
+    if (_selectIndex==3) {
+
+    vedioModel.vedioType = 2;
+    }else{
+        vedioModel.vedioType = 1;
+    }
     vedioModel.strUserID = @"1";
     [arrVedio addObject:vedioModel];
     playerVC.arrVedio = arrVedio;

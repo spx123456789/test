@@ -43,6 +43,14 @@
   BOOL _isrecording;
   ALAssetsLibrary *_assetLibrary;
   __block NSDictionary *_currentVideo;
+  UIImageView *starView;
+  UILabel *wordLabel;
+  UIImageView *auxiliaryView;
+
+  UILabel *timeLabel;
+
+  NSTimer *timer;
+  NSInteger lasttime;
 }
 
 @end
@@ -71,6 +79,7 @@
       UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   CGFloat viewWidth = CGRectGetWidth(self.view.frame);
 
+  
   // preview
   _previewView = [[UIView alloc] initWithFrame:CGRectZero];
   _previewView.backgroundColor = [UIColor blackColor];
@@ -92,23 +101,23 @@
   [_previewView.layer addSublayer:_previewLayer];
   [self.view addSubview:_previewView];
 
-  // press to record gesture
-  _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
-  _longPressGestureRecognizer.delegate = self;
-  _longPressGestureRecognizer.minimumPressDuration = 0.05f;
-  _longPressGestureRecognizer.allowableMovement = 10.0f;
-  [_longPressGestureRecognizer
-      addTarget:self
-         action:@selector(_handleLongPressGestureRecognizer:)];
+  //  // press to record gesture
+  //  _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
+  //  _longPressGestureRecognizer.delegate = self;
+  //  _longPressGestureRecognizer.minimumPressDuration = 0.05f;
+  //  _longPressGestureRecognizer.allowableMovement = 10.0f;
+  //  [_longPressGestureRecognizer
+  //      addTarget:self
+  //         action:@selector(_handleLongPressGestureRecognizer:)];
 
-  // gesture view to record
-  UIView *gestureView = [[UIView alloc] initWithFrame:CGRectZero];
-  CGRect gestureFrame = self.view.bounds;
-  gestureFrame.origin = CGPointMake(0, 60.0f);
-  gestureFrame.size.height -= 10.0f;
-  gestureView.frame = gestureFrame;
-  [self.view addSubview:gestureView];
-  [gestureView addGestureRecognizer:_longPressGestureRecognizer];
+//  // gesture view to record
+//  UIView *gestureView = [[UIView alloc] initWithFrame:CGRectZero];
+//  CGRect gestureFrame = self.view.bounds;
+//  gestureFrame.origin = CGPointMake(0, 60.0f);
+//  gestureFrame.size.height -= 10.0f;
+//  gestureView.frame = gestureFrame;
+//  [self.view addSubview:gestureView];
+//  [gestureView addGestureRecognizer:_longPressGestureRecognizer];
 
   // flip button
   _flipButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -155,53 +164,125 @@
 
   CGFloat width = 300;
   CGFloat height = 300;
-  UIImageView *imageView = [[UIImageView alloc]
+  auxiliaryView = [[UIImageView alloc]
       initWithFrame:CGRectMake(ScreenWidth - width - 50, 70, width, height)];
   UIImageView *imgView1 =
       [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-  [imageView addSubview:imgView1];
+  [auxiliaryView addSubview:imgView1];
   imgView1.contentMode = UIViewContentModeTopLeft;
   imgView1.image = [UIImage imageNamed:@"ic_border_topleft"];
 
   UIImageView *imgView2 =
       [[UIImageView alloc] initWithFrame:CGRectMake(width - 44, 0, 44, 44)];
-  [imageView addSubview:imgView2];
+  [auxiliaryView addSubview:imgView2];
   imgView2.contentMode = UIViewContentModeTopRight;
   imgView2.image = [UIImage imageNamed:@"ic_border_topright"];
 
   UIImageView *imgView3 =
       [[UIImageView alloc] initWithFrame:CGRectMake(0, height - 44, 44, 44)];
-  [imageView addSubview:imgView3];
+  [auxiliaryView addSubview:imgView3];
   imgView3.contentMode = UIViewContentModeBottomLeft;
   imgView3.image = [UIImage imageNamed:@"ic_border_bottomleft"];
 
   UIImageView *imgView4 = [[UIImageView alloc]
       initWithFrame:CGRectMake(width - 44, height - 44, 44, 44)];
-  [imageView addSubview:imgView4];
+  [auxiliaryView addSubview:imgView4];
   imgView4.contentMode = UIViewContentModeBottomRight;
   imgView4.image = [UIImage imageNamed:@"ic_border_bottomright"];
-  [self.view addSubview:imageView];
+  [self.view addSubview:auxiliaryView];
+
+  UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [starButton setFrame:CGRectMake(50, 10, 40, 40)];
+  [starButton setImage:[UIImage imageNamed:@"star.jpg"]
+              forState:UIControlStateNormal];
+  [starButton addTarget:self
+                 action:@selector(starButtonPressed:)
+       forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:starButton];
+
+  UIButton *wordButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [wordButton setFrame:CGRectMake(100, 10, 40, 40)];
+  [wordButton setImage:[UIImage imageNamed:@"default_image_road"]
+              forState:UIControlStateNormal];
+  [wordButton addTarget:self
+                 action:@selector(wordButtonPressed:)
+       forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:wordButton];
+
+  UIButton *auxiliaryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [auxiliaryButton setFrame:CGRectMake(150, 10, 40, 40)];
+  [auxiliaryButton setImage:[UIImage imageNamed:@"star.jpg"]
+                   forState:UIControlStateNormal];
+  [auxiliaryButton addTarget:self
+                      action:@selector(auxiliaryButtonPressed:)
+            forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:auxiliaryButton];
+
+  starView =
+      [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.jpg"]];
+  starView.contentMode = UIViewContentModeScaleAspectFit;
+  [starView setFrame:CGRectMake(20, ScreenHeight - 150, 40, 40)];
+  [self.view addSubview:starView];
+    timeLabel = [[UILabel alloc]
+                 initWithFrame:CGRectMake(0, ScreenHeight-40, ScreenWidth,
+                                          40)];
+    timeLabel.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:timeLabel];
+
+    
+}
+
+- (void)timeCountdown {
+  lasttime--;
+    NSLog(@"------------------------------%li",(long)lasttime);
+  if (lasttime == 0) {
+    [self _endCapture];
+
+  } else {
+    timeLabel.text = [NSString stringWithFormat:@"%li:00", (long)lasttime];
+  }
+}
+
+- (void)auxiliaryButtonPressed:(UIButton *)btn {
+  btn.selected = !btn.selected;
+  auxiliaryView.hidden = btn.selected;
+}
+
+- (void)starButtonPressed:(UIButton *)btn {
+  btn.selected = !btn.selected;
+
+  starView.hidden = btn.selected;
+}
+
+- (void)wordButtonPressed:(UIButton *)btn {
+  btn.selected = !btn.selected;
+
+  wordLabel.hidden = btn.selected;
 }
 
 #pragma mark - view lifecycle
 - (void)back:(UIButton *)btn {
+  [timer invalidate];
   [self.navigationController popViewControllerAnimated:YES];
 }
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.view.layer.cornerRadius=20;
-    self.view.clipsToBounds=YES;
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  self.view.layer.cornerRadius = 20;
+  self.view.clipsToBounds = YES;
 }
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.navigationController setNavigationBarHidden:YES];
-  UILabel *label = [[UILabel alloc]
+  wordLabel = [[UILabel alloc]
       initWithFrame:CGRectMake(60, 60, 200, ScreenHeight - 60)];
-  label.numberOfLines = 0;
-  label.text = self.videoModel.videoWord;
-  label.textColor = [UIColor blackColor];
-  [self.view addSubview:label];
+  wordLabel.numberOfLines = 0;
+  wordLabel.text = self.videoModel.videoWord;
+  wordLabel.textColor = [UIColor blackColor];
+  lasttime = self.videoModel.videoTime.integerValue;
+  timeLabel.text =
+      [NSString stringWithFormat:@"%@:00", self.videoModel.videoTime];
+  [self.view addSubview:wordLabel];
+
   [self _resetCapture];
   [[PBJVision sharedInstance] startPreview];
 }
@@ -270,10 +351,16 @@
     _isrecording = !_isrecording;
   } else {
     _isrecording = !_isrecording;
+      timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                      target:self
+                                    selector:@selector(timeCountdown)
+                                    userInfo:nil
+                                     repeats:YES];
     if (!_recording)
       [self _startCapture];
     else
       [self _resumeCapture];
+    
   }
 }
 
@@ -285,26 +372,26 @@
 }
 
 #pragma mark - UIGestureRecognizer
-- (void)_handleLongPressGestureRecognizer:
-    (UIGestureRecognizer *)gestureRecognizer {
-  //  switch (gestureRecognizer.state) {
-  //    case UIGestureRecognizerStateBegan: {
-  //      if (!_recording)
-  //        [self _startCapture];
-  //      else
-  //        [self _resumeCapture];
-  //      break;
-  //    }
-  //    case UIGestureRecognizerStateEnded:
-  //    case UIGestureRecognizerStateCancelled:
-  //    case UIGestureRecognizerStateFailed: {
-  //      [self _pauseCapture];
-  //      break;
-  //    }
-  //    default:
-  //      break;
-  //  }
-}
+//- (void)_handleLongPressGestureRecognizer:
+//    (UIGestureRecognizer *)gestureRecognizer {
+//    switch (gestureRecognizer.state) {
+//      case UIGestureRecognizerStateBegan: {
+//        if (!_recording)
+//          [self _startCapture];
+//        else
+//          [self _resumeCapture];
+//        break;
+//      }
+//      case UIGestureRecognizerStateEnded:
+//      case UIGestureRecognizerStateCancelled:
+//      case UIGestureRecognizerStateFailed: {
+//        [self _pauseCapture];
+//        break;
+//      }
+//      default:
+//        break;
+//    }
+//}
 
 #pragma mark - PBJVisionDelegate
 
@@ -396,7 +483,7 @@
   ////                           UIAlertView *alert = [[UIAlertView alloc]
   ////                                   initWithTitle:@"Saved!"
   ////                                         message:@"Saved to the camera
-  ///roll."
+  /// roll."
   ////                                        delegate:self
   ////                               cancelButtonTitle:nil
   ////                               otherButtonTitles:@"OK", nil];
