@@ -500,8 +500,8 @@ typedef void (^PBJVisionBlock)();
         [_captureOutputVideo setAlwaysDiscardsLateVideoFrames:NO];
         
         // setup video to use 640 x 480 for the hightest quality touch-to-record
-        if ( [_captureSession canSetSessionPreset:AVCaptureSessionPreset640x480] )
-            sessionPreset = AVCaptureSessionPreset640x480;
+        if ( [_captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720] )
+            sessionPreset = AVCaptureSessionPreset1280x720;
         
         // set the framerate and preset
         CMTime frameDuration = CMTimeMake( 1, 30 );
@@ -1063,7 +1063,7 @@ typedef void (^PBJVisionBlock)();
     // 437500, good for 640 x 480
 	float bitRate = 87500.0f * 8.0f;
 	NSInteger frameInterval = 30;
-    
+    CGSize size =[UIScreen mainScreen].bounds.size;
     NSDictionary *compressionSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithFloat:bitRate], AVVideoAverageBitRateKey,
                                         [NSNumber numberWithInteger:frameInterval], AVVideoMaxKeyFrameIntervalKey,
@@ -1072,8 +1072,8 @@ typedef void (^PBJVisionBlock)();
 	NSDictionary *videoCompressionSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 											  AVVideoCodecH264, AVVideoCodecKey,
                                               AVVideoScalingModeResizeAspectFill, AVVideoScalingModeKey,
-											  [NSNumber numberWithInteger:dimensions.width], AVVideoWidthKey,
-											  [NSNumber numberWithInteger:dimensions.width], AVVideoHeightKey, // square format
+											  [NSNumber numberWithInteger:size.width], AVVideoWidthKey,
+											  [NSNumber numberWithInteger:size.height], AVVideoHeightKey, // square format
 											  compressionSettings, AVVideoCompressionPropertiesKey,
 											  nil];
     
