@@ -29,6 +29,7 @@
     } else {
         self.titleLabel.text = model.title;
     }
+    self.videorecordButton.hidden=model.ifDesk;
 }
 -(void)setupSubviews
 {

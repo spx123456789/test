@@ -89,7 +89,7 @@
              forControlEvents:UIControlEventValueChanged];
   [self.view addSubview:segmentedControl];
   [self.view addSubview:self.tableView];
-
+    [self setExtraCellLineHidden:self.tableView];
   UIButton *backButton =
       [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-40, 0, 30, 30)];
   [backButton setBackgroundImage:[UIImage imageNamed:@"return"]
@@ -121,12 +121,47 @@
  numberOfRowsInSection:(NSInteger)section {
   return self.currentDatasourse.count;
 }
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
 
-// Row display. Implementers should *always* try to reuse cells by setting each
-// cell's reuseIdentifier and querying for available reusable cells with
-// dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators)
-// and data source (accessory views, editing controls)
+//提交编辑状态
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*path=[paths  objectAtIndex:0];
+        NSString *filename=[path stringByAppendingPathComponent:@"story.plist"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSMutableArray *array;
+        if (![fileManager fileExistsAtPath:filename]) {
+            array =[[NSMutableArray alloc]init];
+        }else{
+            array=[[NSMutableArray alloc]initWithContentsOfFile:filename];
+        }
+        
+        [array removeObjectAtIndex:indexPath.row];
+        [array writeToFile:filename atomically:YES];
+        [self.currentDatasourse removeObjectAtIndex:indexPath.row];
+        [self.dDataSourse removeObjectAtIndex:indexPath.row];
+        //第一个参数为要删除的行
+        //第二个参数为删除是的动画
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationMiddle];
+    }
+}
+//返回指定行或者指定区域的编辑状态
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_selectIndex==3) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else
+    {
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {

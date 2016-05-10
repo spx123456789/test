@@ -16,5 +16,7 @@
 //显示/隐藏状态栏
 - (void)showStatusBar;
 - (void)hideStatusBar;
+//隐藏tabbleView 的多余线
+- (void)setExtraCellLineHidden:(UITableView *)tableView;
 
 @end
