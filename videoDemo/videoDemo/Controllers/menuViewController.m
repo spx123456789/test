@@ -90,12 +90,12 @@
   [self.view addSubview:segmentedControl];
   [self.view addSubview:self.tableView];
 
-  UIButton *playButton =
-      [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-50, 0, 50, 30)];
-  [playButton setImage:[UIImage imageNamed:@"play_start"]
+  UIButton *backButton =
+      [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-40, 0, 30, 30)];
+  [backButton setBackgroundImage:[UIImage imageNamed:@"return"]
               forState:UIControlStateNormal];
-  [self.view addSubview:playButton];
-  [playButton addTarget:self
+  [self.view addSubview:backButton];
+  [backButton addTarget:self
                  action:@selector(playButtonPressed:)
        forControlEvents:UIControlEventTouchUpInside];
 }
