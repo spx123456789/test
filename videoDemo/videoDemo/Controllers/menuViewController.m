@@ -74,7 +74,7 @@
   }
   self.currentDatasourse = [NSMutableArray arrayWithArray:self.dataSource];
   NSArray *segmentedArray =
-      [[NSArray alloc] initWithObjects:@"Story", @"Material", @"Play", @"Desk", @"Me", nil];
+      [[NSArray alloc] initWithObjects:@"看戏", @"空镜", @"脚本", @"工作台", @"片酬", nil];
   //初始化UISegmentedControl
   UISegmentedControl *segmentedControl =
       [[UISegmentedControl alloc] initWithItems:segmentedArray];
