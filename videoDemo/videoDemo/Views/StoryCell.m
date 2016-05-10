@@ -22,7 +22,7 @@
 -(void)configCellWithModel:(StoryModel *)model
 {
     _model=model;
-    [self.videorecordButton setImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
+    [self.videorecordButton setBackgroundImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
     [self.videoPreviewButton setImage:[UIImage imageNamed:model.thumb] forState:UIControlStateNormal];
     if ([model.title hasSuffix:@".mov"]) {
         self.titleLabel.text = [model.title substringWithRange:NSMakeRange(0, [model.title length] - 9)];
@@ -55,10 +55,10 @@
     
     [self.videorecordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
-        make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.top.equalTo(self.contentView.mas_top);
-        make.bottom.equalTo(self.contentView.mas_bottom);
-        make.width.equalTo(@100);
+        make.right.equalTo(self.contentView.mas_right).offset(-40);
+        make.top.equalTo(self.contentView.mas_top).offset(20);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-20);
+        make.width.equalTo(@60);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);

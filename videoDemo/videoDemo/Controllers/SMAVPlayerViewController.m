@@ -65,8 +65,8 @@
     splashTimer = [NSTimer scheduledTimerWithTimeInterval:1  target:self selector:@selector(roteImageView) userInfo:nil repeats:YES];
     self.viewAvPlayer.frame=CGRectMake(0, 0, ScreenWidth,ScreenHeight );
     if (self.navigationController) {
-        UIButton *playButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-50, 0, 50, 30)];
-        [playButton setImage:[UIImage imageNamed:@"play_start"] forState:UIControlStateNormal];
+        UIButton *playButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth-40, 10, 30, 30)];
+        [playButton setBackgroundImage		:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
         [self.viewHead addSubview:playButton];
         [playButton addTarget:self action:@selector(playButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }

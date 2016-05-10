@@ -67,6 +67,9 @@
 		AA921CD81CD2030A007DA57F /* ic_border_topleft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA921CD41CD2030A007DA57F /* ic_border_topleft@2x.png */; };
 		AA921CD91CD2030A007DA57F /* ic_border_topright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA921CD51CD2030A007DA57F /* ic_border_topright@2x.png */; };
 		EA2E231D1CD051A000801945 /* sc3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2E231C1CD051A000801945 /* sc3@2x.png */; };
+		EA96585C1CE1B4A7001C2027 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9658591CE1B4A7001C2027 /* camera@2x.png */; };
+		EA96585D1CE1B4A7001C2027 /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96585A1CE1B4A7001C2027 /* more@2x.png */; };
+		EA96585E1CE1B4A7001C2027 /* return@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96585B1CE1B4A7001C2027 /* return@2x.png */; };
 		EAA50DBE1CCDE2E5008E794C /* material.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA50DBB1CCDE2E5008E794C /* material.plist */; };
 		EAA50DBF1CCDE2E5008E794C /* story.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA50DBC1CCDE2E5008E794C /* story.plist */; };
 		EAA50DC01CCDE2E5008E794C /* script.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAA50DBD1CCDE2E5008E794C /* script.plist */; };
@@ -188,6 +191,9 @@
 		AA921CD51CD2030A007DA57F /* ic_border_topright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_border_topright@2x.png"; sourceTree = "<group>"; };
 		B58595A12D734313BC2B5512 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2E231C1CD051A000801945 /* sc3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sc3@2x.png"; sourceTree = "<group>"; };
+		EA9658591CE1B4A7001C2027 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		EA96585A1CE1B4A7001C2027 /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		EA96585B1CE1B4A7001C2027 /* return@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "return@2x.png"; sourceTree = "<group>"; };
 		EAA50DBB1CCDE2E5008E794C /* material.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = material.plist; sourceTree = "<group>"; };
 		EAA50DBC1CCDE2E5008E794C /* story.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = story.plist; sourceTree = "<group>"; };
 		EAA50DBD1CCDE2E5008E794C /* script.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = script.plist; sourceTree = "<group>"; };
@@ -290,6 +296,9 @@
 		AA0B20141CCCD1F100E1AAD1 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EA9658591CE1B4A7001C2027 /* camera@2x.png */,
+				EA96585A1CE1B4A7001C2027 /* more@2x.png */,
+				EA96585B1CE1B4A7001C2027 /* return@2x.png */,
 				AA921CD21CD2030A007DA57F /* ic_border_bottomleft@2x.png */,
 				AA921CD31CD2030A007DA57F /* ic_border_bottomright@2x.png */,
 				AA921CD41CD2030A007DA57F /* ic_border_topleft@2x.png */,
@@ -616,9 +625,11 @@
 				16123E981CC60E3A00031557 /* capture_rec_base@2x.png in Resources */,
 				AA0B20251CCCD1F100E1AAD1 /* play_stop.png in Resources */,
 				AA78E8161CC271DA005722A0 /* stop@2x.png in Resources */,
+				EA96585C1CE1B4A7001C2027 /* camera@2x.png in Resources */,
 				EAA50DC01CCDE2E5008E794C /* script.plist in Resources */,
 				16123E911CC60BC100031557 /* record@2x.png in Resources */,
 				AA78E81A1CC274CC005722A0 /* back@2x.png in Resources */,
+				EA96585D1CE1B4A7001C2027 /* more@2x.png in Resources */,
 				AA921CD61CD2030A007DA57F /* ic_border_bottomleft@2x.png in Resources */,
 				AA370A491CD05CD90069FB8B /* story1.mp4 in Resources */,
 				AA78E8141CC271D4005722A0 /* start@2x.png in Resources */,
@@ -633,6 +644,7 @@
 				AA0B201F1CCCD1F100E1AAD1 /* default_image_road@2x.png in Resources */,
 				AA0B20211CCCD1F100E1AAD1 /* me.png in Resources */,
 				AA0B20261CCCD1F100E1AAD1 /* play_stop@2x.png in Resources */,
+				EA96585E1CE1B4A7001C2027 /* return@2x.png in Resources */,
 				AA0B20231CCCD1F100E1AAD1 /* play_start.png in Resources */,
 				AA0B20281CCCD72100E1AAD1 /* play_next.png in Resources */,
 				16123E971CC60E3A00031557 /* capture_flip@2x.png in Resources */,
