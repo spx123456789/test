@@ -24,8 +24,11 @@
     _model=model;
     [self.videorecordButton setImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
     [self.videoPreviewButton setImage:[UIImage imageNamed:model.thumb] forState:UIControlStateNormal];
-    self.titleLabel.text=model.title;
-    
+    if ([model.title hasSuffix:@".mov"]) {
+        self.titleLabel.text = [model.title substringWithRange:NSMakeRange(0, [model.title length] - 9)];
+    } else {
+        self.titleLabel.text = model.title;
+    }
 }
 -(void)setupSubviews
 {
