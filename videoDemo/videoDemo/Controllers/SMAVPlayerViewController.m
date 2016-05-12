@@ -309,6 +309,11 @@
     
     leftSwipeGestureRecognizer.direction=UISwipeGestureRecognizerDirectionLeft;
     [self.viewAvPlayer addGestureRecognizer:leftSwipeGestureRecognizer];
+    
+    UISwipeGestureRecognizer *righthorSwipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(horSwipe:)];
+    righthorSwipe.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.viewAvPlayer addGestureRecognizer:righthorSwipe];
+    
     /*
     //双击手势监听
     UITapGestureRecognizer * tapGesDouble=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playerDoubleTap:)];
@@ -317,6 +322,41 @@
     //双击手势确定监测失败才会触发单击手势的相应操作
     [tapGes requireGestureRecognizerToFail:tapGesDouble];*/
 }
+-(void)horSwipe:(UISwipeGestureRecognizer*)sp
+{
+    --subscript;
+    self.labelTimeNow.text = @"00:00:00";
+    self.labelTimeTotal.text = @"00:00:00";
+    self.slider.value = 0;
+    if (subscript >=0) {
+        [self.player seekToTime:CMTimeMakeWithSeconds(0, _player.currentItem.duration.timescale)];
+        [self removeNotification];
+        [self removeObserverFromPlayerItem:self.player.currentItem];
+        [self.player removeTimeObserver:self.timeObserver];
+        [_player replaceCurrentItemWithPlayerItem:[self getPlayItem:subscript]];
+        [self addObserverToPlayerItem:self.player.currentItem];
+        [self addNotification];
+        [self addProgressObserver];
+        if (self.player.rate == 0 ) {
+            [self.player play];
+        }
+    }else{
+        ++subscript;
+        /*
+         [self.player.currentItem cancelPendingSeeks];
+         [self.player.currentItem.asset cancelLoading];
+         */
+        [self.btnPause setTitle:@"播放" forState:UIControlStateNormal];
+        [self.btnPause setBackgroundImage:[UIImage imageNamed:@"play_start.png"] forState:UIControlStateNormal];
+        self.labelTimeTotal.text = @"00:00:00";
+        self.labelTimeNow.text = @"00:00:00";
+        [MBMessageTip messageWithTip:self.view withMessage:@"没有更多了" ];
+    }
+    
+}
+
+
+
 - (void)handleSwipes:(UISwipeGestureRecognizer *)sender
 {
     [self nextClick:nil];
@@ -385,7 +425,6 @@
         [self.btnPause setBackgroundImage:[UIImage imageNamed:@"play_start.png"] forState:UIControlStateNormal];
     }
 }
-
 - (IBAction)nextClick:(id)sender {
     ++subscript;
     self.labelTimeNow.text = @"00:00:00";
