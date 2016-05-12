@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SMAVPlayerViewController.h"
 #import "VideoModel.h"
+#import "StoryModel.h"
 @interface AppDelegate ()
 
 @end
@@ -22,7 +23,7 @@
     self.window.backgroundColor=[UIColor grayColor];
     SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc] initWithNibName:@"SMAVPlayerViewController" bundle:nil];
     NSMutableArray *arrVedio = [NSMutableArray array];
-    for (NSInteger i = 0 ; i < 2; i++) {
+    for (NSInteger i = 0 ; i < 1; i++) {
         VideoModel *videoModel = [[VideoModel alloc] init];
         switch (i) {
             case  0:
@@ -44,6 +45,41 @@
         videoModel.strUserID = @"1";
         [arrVedio addObject:videoModel];
     }
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex:0];
+    NSString *filename = [path stringByAppendingPathComponent:@"story.plist"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableArray *array;
+    if (![fileManager fileExistsAtPath:filename]) {
+        array = [[NSMutableArray alloc] init];
+    } else {
+        array = [[NSMutableArray alloc] initWithContentsOfFile:filename];
+    }
+    if (array.count) {
+        for (NSString *strname in array) {
+            NSString *plistPath =
+            [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
+            NSMutableArray *data =
+            [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+            NSDictionary *dic = data[0];
+            StoryModel *model = [[StoryModel alloc] init];
+            model.thumb = [dic objectForKey:@"thumb"];
+            model.localID = [dic objectForKey:@"id"];
+            model.itemArray =
+            [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
+            model.videoUrl = strname;
+            model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
+            model.ifDesk = YES;
+            VideoModel *vedioModel = [[VideoModel alloc] init];
+            vedioModel.strURL = model.videoUrl;
+            vedioModel.vedioType = 2;
+            vedioModel.strUserID = @"1";
+            [arrVedio addObject:vedioModel];
+        }
+    }
+    
+    
     playerVC.arrVedio = arrVedio;
 
     UINavigationController *navaController=[[UINavigationController alloc]initWithRootViewController:playerVC];

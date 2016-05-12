@@ -79,6 +79,7 @@
     [self savePayHistory];
     [self.player pause];
     menuViewController *menu=[[menuViewController alloc]init];
+    menu.playerViewController=self;
     [self.navigationController pushViewController:menu animated:YES];
 
 }
@@ -303,6 +304,11 @@
     UITapGestureRecognizer * tapGes=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playerSingleClick:)];
     tapGes.numberOfTapsRequired=1;
     [self.viewAvPlayer addGestureRecognizer:tapGes];
+    
+   UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    
+    leftSwipeGestureRecognizer.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.viewAvPlayer addGestureRecognizer:leftSwipeGestureRecognizer];
     /*
     //双击手势监听
     UITapGestureRecognizer * tapGesDouble=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playerDoubleTap:)];
@@ -311,7 +317,10 @@
     //双击手势确定监测失败才会触发单击手势的相应操作
     [tapGes requireGestureRecognizerToFail:tapGesDouble];*/
 }
-
+- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
+{
+    [self nextClick:nil];
+}
 //显示或隐藏控制view
 - (void)playerSingleClick:(UITapGestureRecognizer*)recognizer{
     if (self.isBottomViewHide) {

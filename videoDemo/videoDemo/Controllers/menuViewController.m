@@ -101,7 +101,23 @@
 }
 
 - (void)playButtonPressed:(UIButton *)btn {
-  [self.navigationController popViewControllerAnimated:YES];
+    NSMutableArray *arrVedio = [NSMutableArray array];
+    for (StoryModel *model  in self.dDataSourse) {
+        VideoModel *vedioModel = [[VideoModel alloc] init];
+        vedioModel.strURL = model.videoUrl;
+        vedioModel.vedioType = 2;
+        vedioModel.strUserID = @"1";
+        [arrVedio addObject:vedioModel];
+    }
+    VideoModel *videoModel = [[VideoModel alloc] init];
+            videoModel.strURL =@"story1";
+            videoModel.strTitle = @"玉髓究竟怎么玩";
+                videoModel.vedioType = 1;
+    videoModel.strUserID = @"1";
+    [arrVedio insertObject:videoModel atIndex:0];
+    _playerViewController.arrVedio = arrVedio;
+    
+   [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (TPKeyboardAvoidingTableView *)tableView {
