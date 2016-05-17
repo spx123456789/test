@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeTotal;       //总时间label
 @property (strong, nonatomic) AVPlayer *player;                     //播放器对象
 @property (strong, nonatomic) id timeObserver;                      //视频播放时间观察者
-@property (weak, nonatomic) IBOutlet UIButton *backButton;          //返回按钮
 @property (assign, nonatomic) float totalTime;                      //视频总时长
 @property (assign, nonatomic) BOOL isHasMovie;                      //是否进行过移动
 @property (assign, nonatomic) BOOL isBottomViewHide;                //底部的view是否隐藏
@@ -87,8 +86,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.navigationController.viewControllers.count==1) {
-        self.backButton.hidden=YES;
+    if (self.navigationController.viewControllers.count!=1) {
+        UIButton *backButton =
+        [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-40, 0, 30, 30)];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back_button"]
+                              forState:UIControlStateNormal];
+        [self.view addSubview:backButton];
+        [backButton addTarget:self
+                       action:@selector(backButtonPressed:)
+             forControlEvents:UIControlEventTouchUpInside];
     }
     
     [self.navigationController setNavigationBarHidden:YES];
@@ -456,7 +462,7 @@
     }
 }
 
-- (IBAction)backAction:(id)sender {
+- (void)backButtonPressed:(UIButton *)btn {
     [self savePayHistory];
     [self.player pause];
     [self dismissViewControllerAnimated:YES completion:nil];
