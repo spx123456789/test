@@ -43,7 +43,7 @@ UIAlertViewDelegate> {
     BOOL _isrecording;
     ALAssetsLibrary *_assetLibrary;
     __block NSDictionary *_currentVideo;
-    UIImageView *starView;
+    UIImageView *eyeView;
     UILabel *wordLabel;
     UIImageView *auxiliaryView;
     
@@ -192,17 +192,17 @@ UIAlertViewDelegate> {
     imgView4.image = [UIImage imageNamed:@"ic_border_bottomright"];
     [self.view addSubview:auxiliaryView];
     
-    UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [starButton setFrame:CGRectMake(50, 10, 40, 40)];
-    [starButton setBackgroundImage:[UIImage imageNamed:@"star.jpg"] forState:UIControlStateNormal];
-    [starButton addTarget:self
-                   action:@selector(starButtonPressed:)
+    UIButton *eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [eyeButton setFrame:CGRectMake(50, 10, 40, 40)];
+    [eyeButton setBackgroundImage:[UIImage imageNamed:@"eye"] forState:UIControlStateNormal];
+    [eyeButton addTarget:self
+                   action:@selector(eyeButtonPressed:)
          forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:starButton];
+    [self.view addSubview:eyeButton];
     
     UIButton *wordButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [wordButton setFrame:CGRectMake(100, 10, 40, 40)];
-    [wordButton setBackgroundImage:[UIImage imageNamed:@"default_image_road"]
+    [wordButton setBackgroundImage:[UIImage imageNamed:@"script"]
                 forState:UIControlStateNormal];
     [wordButton addTarget:self
                    action:@selector(wordButtonPressed:)
@@ -211,18 +211,18 @@ UIAlertViewDelegate> {
     
     UIButton *auxiliaryButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [auxiliaryButton setFrame:CGRectMake(150, 10, 40, 40)];
-    [auxiliaryButton setBackgroundImage:[UIImage imageNamed:@"star.jpg"]
+    [auxiliaryButton setBackgroundImage:[UIImage imageNamed:@"time"]
                      forState:UIControlStateNormal];
     [auxiliaryButton addTarget:self
                         action:@selector(auxiliaryButtonPressed:)
               forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:auxiliaryButton];
     
-    starView =
-    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.jpg"]];
-    starView.contentMode = UIViewContentModeScaleAspectFit;
-    [starView setFrame:CGRectMake(20, ScreenHeight - 120, 20, 20)];
-    [self.view addSubview:starView];
+    eyeView =
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eye"]];
+    eyeView.contentMode = UIViewContentModeScaleAspectFit;
+    [eyeView setFrame:CGRectMake(20, ScreenHeight - 120, 20, 20)];
+    [self.view addSubview:eyeView];
     
     wordLabel = [[UILabel alloc]
                  initWithFrame:CGRectMake(60, 60, 200, ScreenHeight - 60)];
@@ -252,10 +252,10 @@ UIAlertViewDelegate> {
     auxiliaryView.hidden = btn.selected;
 }
 
-- (void)starButtonPressed:(UIButton *)btn {
+- (void)eyeButtonPressed:(UIButton *)btn {
     btn.selected = !btn.selected;
     
-    starView.hidden = btn.selected;
+    eyeView.hidden = btn.selected;
 }
 
 - (void)wordButtonPressed:(UIButton *)btn {
