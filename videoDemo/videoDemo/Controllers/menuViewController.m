@@ -92,7 +92,7 @@
     [self setExtraCellLineHidden:self.tableView];
   UIButton *backButton =
       [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-40, 0, 30, 30)];
-  [backButton setBackgroundImage:[UIImage imageNamed:@"return"]
+  [backButton setBackgroundImage:[UIImage imageNamed:@"back_button"]
               forState:UIControlStateNormal];
   [self.view addSubview:backButton];
   [backButton addTarget:self

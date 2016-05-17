@@ -136,8 +136,9 @@ UIAlertViewDelegate> {
 //    [self.view addSubview:_flipButton];
     
     UIButton *backButton =
-    [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 160, 0, 60, 60)];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-40, 0, 30, 30)];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"back_button"]
+                          forState:UIControlStateNormal];
     [self.view addSubview:backButton];
     [backButton addTarget:self
                    action:@selector(back:)
@@ -162,7 +163,7 @@ UIAlertViewDelegate> {
     CGRect strobeFrame = _strobeView.frame;
     strobeFrame.origin = CGPointMake(15.0f, 15.0f);
     _strobeView.frame = strobeFrame;
-    [self.view addSubview:_strobeView];
+//    [self.view addSubview:_strobeView];
     CGFloat width = 300;
     CGFloat height = 300;
     auxiliaryView = [[UIImageView alloc]
@@ -193,7 +194,7 @@ UIAlertViewDelegate> {
     [self.view addSubview:auxiliaryView];
     
     UIButton *eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [eyeButton setFrame:CGRectMake(50, 10, 40, 40)];
+    [eyeButton setFrame:CGRectMake(0, 10, 40, 40)];
     [eyeButton setBackgroundImage:[UIImage imageNamed:@"eye"] forState:UIControlStateNormal];
     [eyeButton addTarget:self
                    action:@selector(eyeButtonPressed:)
@@ -201,7 +202,7 @@ UIAlertViewDelegate> {
     [self.view addSubview:eyeButton];
     
     UIButton *wordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [wordButton setFrame:CGRectMake(100, 10, 40, 40)];
+    [wordButton setFrame:CGRectMake(50, 10, 40, 40)];
     [wordButton setBackgroundImage:[UIImage imageNamed:@"script"]
                 forState:UIControlStateNormal];
     [wordButton addTarget:self
@@ -210,7 +211,7 @@ UIAlertViewDelegate> {
     [self.view addSubview:wordButton];
     
     UIButton *auxiliaryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [auxiliaryButton setFrame:CGRectMake(150, 10, 40, 40)];
+    [auxiliaryButton setFrame:CGRectMake(100, 10, 40, 40)];
     [auxiliaryButton setBackgroundImage:[UIImage imageNamed:@"time"]
                      forState:UIControlStateNormal];
     [auxiliaryButton addTarget:self
@@ -249,7 +250,7 @@ UIAlertViewDelegate> {
 
 - (void)auxiliaryButtonPressed:(UIButton *)btn {
     btn.selected = !btn.selected;
-    auxiliaryView.hidden = btn.selected;
+    timeLabel.hidden = btn.selected;
 }
 
 - (void)eyeButtonPressed:(UIButton *)btn {
@@ -365,6 +366,7 @@ UIAlertViewDelegate> {
             [self _resumeCapture];
         
     }
+    _doneButton.hidden = YES;
 }
 
 #pragma mark - UIAlertViewDelegate
