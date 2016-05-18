@@ -28,7 +28,19 @@
 -(void)configCellWithModel:(VideoModel *)model
 {
     _videoModel=model;
-    self.imageView.image=[UIImage imageNamed:model.strImage];
+//    NSURL *url;
+    if (model.vedioType==2) {
+        if (model.videoImage) {
+            self.imageView.image=model.videoImage;
+        }else{
+            self.imageView.image=[UIImage imageNamed:model.strImage];
+        }
+    }else{
+//        NSString *urlStr =[model.strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        url =[[NSBundle mainBundle] URLForResource:urlStr withExtension:@".mp4"];
+        self.imageView.image=[UIImage imageNamed:model.strImage];
+
+    }
     if (_videoModel.vedioType != 2) {
         [_markView setHidden:YES];
     }else{
@@ -41,7 +53,20 @@
 -(void)configCellWithModel:(VideoModel *)model
 {
     _videoModel=model;
-    self.imageView.image=[UIImage imageNamed:model.strImage];
+    
+    //    NSURL *url;
+    if (model.vedioType==2) {
+        if (model.videoImage) {
+            self.imageView.image=model.videoImage;
+        }else{
+            self.imageView.image=[UIImage imageNamed:model.strImage];
+        }
+    }else{
+        //        NSString *urlStr =[model.strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        //        url =[[NSBundle mainBundle] URLForResource:urlStr withExtension:@".mp4"];
+        self.imageView.image=[UIImage imageNamed:model.strImage];
+        
+    }
     if (_videoModel.vedioType != 2) {
         [_markView setHidden:YES];
     }else{

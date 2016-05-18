@@ -19,7 +19,7 @@
 
 #define BOTTOM_CELL_WIDTH 50
 @interface RecoadListViewController ()<UICollectionViewDelegate,
-                                       UICollectionViewDataSource>
+                                       UICollectionViewDataSource,UIAlertViewDelegate>
 @property(nonatomic, strong) UICollectionView *topCollection;
 @property(nonatomic, strong) UICollectionView *bottomCollection;
 @property (nonatomic,strong) NSMutableArray *videos;
@@ -110,6 +110,7 @@
   }
   VideoModel *model = [[VideoModel alloc] init];
   model.strImage = @"capture_yep";
+  model.vedioType=1;
   [mutArr addObject:model];
   self.datasoure = mutArr;
   UIButton *backButton =
@@ -122,13 +123,45 @@
        forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.topCollection];
   [self.view addSubview:self.bottomCollection];
+    
 }
 - (void)playButtonPressed:(UIButton *)btn {
-  [self.navigationController popViewControllerAnimated:YES];
+    BOOL ifRecoad;
+    _videos=[NSMutableArray arrayWithArray:self.datasoure];
+    for (int i=0; i<7;i++ ) {
+        VideoModel *vedioModel=_videos[i];
+        if (vedioModel.strURL&&vedioModel.vedioType==2) {
+            ifRecoad=YES;
+            break;
+        }
+    }
+    if (ifRecoad) {
+        //已经录制了部分视频并且没有保存
+        UIAlertView *aleart=[[UIAlertView alloc]initWithTitle:@"提示" message:@"您有视频尚未保存，是否确定退出？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+        [aleart show];
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+    
+    
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0) {
+    
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+    [self.topCollection reloadData];
+    [self.bottomCollection reloadData];
 }
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -194,8 +227,6 @@
 
 -(void)combine:(NSNotification *)obj
 {
-    NSLog(@"11111111111111111111111111111%lu",(unsigned long)_videos.count);
-
     if (_videos.count==1) {
         [SVProgressHUD dismiss];
         NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
@@ -210,6 +241,8 @@
         }
         [array addObject:obj.object];
         [array writeToFile:filename atomically:YES];
+        [self .navigationController popViewControllerAnimated:YES];
+        
     }else{
         if (!obj.object) {
             NSArray *videos=[NSArray arrayWithObjects:_videos[0],_videos[1], nil];
