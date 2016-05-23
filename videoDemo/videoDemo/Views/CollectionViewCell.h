@@ -23,6 +23,7 @@
 @interface BottomCollectionCell : UICollectionViewCell
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UIImageView *markView;
+@property (nonatomic,strong) UILabel *intervalLabel;
 @property (nonatomic,strong) VideoModel *videoModel;
 -(void)configCellWithModel:(VideoModel*)model;
 

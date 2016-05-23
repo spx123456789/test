@@ -16,8 +16,8 @@
 
 #define TOP_CELL_WIDTH 200
 #define TOP_CELL_LINE_SPACE 80
-
-#define BOTTOM_CELL_WIDTH 50
+#define BOTTOM_CELL_HEIGHT 50
+#define BOTTOM_CELL_WIDTH 80
 @interface RecoadListViewController ()<UICollectionViewDelegate,
                                        UICollectionViewDataSource,UIAlertViewDelegate>
 @property(nonatomic, strong) UICollectionView *topCollection;
@@ -211,7 +211,7 @@
   if (collectionView == _topCollection) {
     return CGSizeMake(TOP_CELL_WIDTH, TOP_CELL_WIDTH);
   } else {
-    return CGSizeMake(BOTTOM_CELL_WIDTH, BOTTOM_CELL_WIDTH);
+    return CGSizeMake(BOTTOM_CELL_WIDTH, BOTTOM_CELL_HEIGHT);
   }
 }
 

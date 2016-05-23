@@ -19,7 +19,7 @@
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         _markView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [_markView setBackgroundColor:[UIColor redColor]];
+        [_markView setImage:[UIImage imageNamed:@"add"]];
         [self addSubview:_imageView];
         [self addSubview:_markView];
     }
@@ -72,15 +72,26 @@
     }else{
         [_markView setHidden:NO];
     }
+    if ([@"capture_yep" isEqualToString:model.strImage]) {
+        _intervalLabel.hidden=YES;
+    }else{
+        _intervalLabel.hidden=NO;
+
+    }
     
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width-30, self.bounds.size.height)];
         _markView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        [_markView setBackgroundColor:[UIColor redColor]];
+        [_markView setImage:[UIImage imageNamed:@"add"]];
+        _intervalLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-20, 15, 20, 20)];
+        _intervalLabel.textColor=[UIColor whiteColor];
+        _intervalLabel.textAlignment=NSTextAlignmentCenter;
+        _intervalLabel.text=@"...";
+        [self addSubview:_intervalLabel];
         [self addSubview:_imageView];
         [self addSubview:_markView];
     }

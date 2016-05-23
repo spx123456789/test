@@ -79,7 +79,6 @@
       UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   CGFloat viewWidth = CGRectGetWidth(self.view.frame);
   CGFloat viewHeigth = CGRectGetHeight(self.view.frame);
-
   // preview
   _previewView = [[UIView alloc] initWithFrame:CGRectZero];
   _previewView.backgroundColor = [UIColor blackColor];
@@ -100,40 +99,7 @@
       CGPointMake(CGRectGetMidX(previewBounds), CGRectGetMidY(previewBounds));
   [_previewView.layer addSublayer:_previewLayer];
   [self.view addSubview:_previewView];
-
-  //  // press to record gesture
-  //  _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
-  //  _longPressGestureRecognizer.delegate = self;
-  //  _longPressGestureRecognizer.minimumPressDuration = 0.05f;
-  //  _longPressGestureRecognizer.allowableMovement = 10.0f;
-  //  [_longPressGestureRecognizer
-  //      addTarget:self
-  //         action:@selector(_handleLongPressGestureRecognizer:)];
-
-  //  // gesture view to record
-  //  UIView *gestureView = [[UIView alloc] initWithFrame:CGRectZero];
-  //  CGRect gestureFrame = self.view.bounds;
-  //  gestureFrame.origin = CGPointMake(0, 60.0f);
-  //  gestureFrame.size.height -= 10.0f;
-  //  gestureView.frame = gestureFrame;
-  //  [self.view addSubview:gestureView];
-  //  [gestureView addGestureRecognizer:_longPressGestureRecognizer];
-
-  // flip button
-  //    _flipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  //
-  //    UIImage *flipImage = [UIImage imageNamed:@"capture_flip"];
-  //    [_flipButton setImage:flipImage forState:UIControlStateNormal];
-  //
-  //    CGRect flipFrame = _flipButton.frame;
-  //    flipFrame.size = CGSizeMake(25.0f, 20.0f);
-  //    flipFrame.origin = CGPointMake(20.0f, ScreenHeight - 30.0f);
-  //    _flipButton.frame = flipFrame;
-  //
-  //    [_flipButton addTarget:self
-  //                    action:@selector(_handleFlipButton:)
-  //          forControlEvents:UIControlEventTouchUpInside];
-  //    [self.view addSubview:_flipButton];
+    [self overlayClipping];
 
   UIButton *backButton =
       [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 40, 0, 30, 30)];
@@ -192,7 +158,10 @@
   imgView4.contentMode = UIViewContentModeBottomRight;
   imgView4.image = [UIImage imageNamed:@"ic_border_bottomright"];
   [self.view addSubview:auxiliaryView];
-
+    UILabel *PromptLabel=[[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth - width - 50, 330, width, 20)];
+    PromptLabel.textAlignment=NSTextAlignmentCenter;
+    PromptLabel.text=@"请保持脸在框中";
+    [self.view addSubview:PromptLabel];
   UIButton *eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [eyeButton setFrame:CGRectMake(0, 10, 40, 40)];
   [eyeButton setBackgroundImage:[UIImage imageNamed:@"eye"]
@@ -375,26 +344,35 @@
 }
 
 #pragma mark - UIGestureRecognizer
-//- (void)_handleLongPressGestureRecognizer:
-//    (UIGestureRecognizer *)gestureRecognizer {
-//    switch (gestureRecognizer.state) {
-//      case UIGestureRecognizerStateBegan: {
-//        if (!_recording)
-//          [self _startCapture];
-//        else
-//          [self _resumeCapture];
-//        break;
-//      }
-//      case UIGestureRecognizerStateEnded:
-//      case UIGestureRecognizerStateCancelled:
-//      case UIGestureRecognizerStateFailed: {
-//        [self _pauseCapture];
-//        break;
-//      }
-//      default:
-//        break;
-//    }
-//}
+- (void)overlayClipping {
+    CGFloat height = 300;
+    CGFloat width = 300;
+    UIView *overlayView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:overlayView];
+    overlayView.backgroundColor = [UIColor grayColor];
+    overlayView.alpha=.3f;
+    auxiliaryView = [[UIImageView alloc]
+                     initWithFrame:CGRectMake(ScreenWidth - width - 50, 30, width, height)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    CGMutablePathRef path = CGPathCreateMutable();
+    // Left side of the ratio view
+    CGPathAddRect(path, nil, CGRectMake(0, 0, auxiliaryView.frame.origin.x, self.view.frame.size.height));
+    // Right side of the ratio view
+    CGPathAddRect(path, nil, CGRectMake(auxiliaryView.frame.origin.x + auxiliaryView.frame.size.width, 0,
+                                        self.view.frame.size.width - auxiliaryView.frame.origin.x -
+                                        auxiliaryView.frame.size.width,
+                                        self.view.frame.size.height));
+    // Top side of the ratio view
+    CGPathAddRect(path, nil, CGRectMake(0, 0, self.view.frame.size.width, auxiliaryView.frame.origin.y));
+    // Bottom side of the ratio view
+    CGPathAddRect(
+                  path, nil,
+                  CGRectMake(0, auxiliaryView.frame.origin.y + auxiliaryView.frame.size.height, self.view.frame.size.width,
+                             self.view.frame.size.height - auxiliaryView.frame.origin.y + auxiliaryView.frame.size.height));
+    maskLayer.path = path;
+    overlayView.layer.mask = maskLayer;
+    CGPathRelease(path);
+}
 
 #pragma mark - PBJVisionDelegate
 
