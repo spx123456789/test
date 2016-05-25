@@ -51,6 +51,7 @@
 
   NSTimer *timer;
   NSInteger lasttime;
+  NSTimer *blinktimer;
 }
 
 @end
@@ -99,7 +100,7 @@
       CGPointMake(CGRectGetMidX(previewBounds), CGRectGetMidY(previewBounds));
   [_previewView.layer addSublayer:_previewLayer];
   [self.view addSubview:_previewView];
-    [self overlayClipping];
+  [self overlayClipping];
 
   UIButton *backButton =
       [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 40, 0, 30, 30)];
@@ -158,10 +159,11 @@
   imgView4.contentMode = UIViewContentModeBottomRight;
   imgView4.image = [UIImage imageNamed:@"ic_border_bottomright"];
   [self.view addSubview:auxiliaryView];
-    UILabel *PromptLabel=[[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth - width - 50, 330, width, 20)];
-    PromptLabel.textAlignment=NSTextAlignmentCenter;
-    PromptLabel.text=@"请保持脸在框中";
-    [self.view addSubview:PromptLabel];
+  UILabel *PromptLabel = [[UILabel alloc]
+      initWithFrame:CGRectMake(ScreenWidth - width - 50, 330, width, 20)];
+  PromptLabel.textAlignment = NSTextAlignmentCenter;
+  PromptLabel.text = @"请保持脸在框中";
+  [self.view addSubview:PromptLabel];
   UIButton *eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [eyeButton setFrame:CGRectMake(0, 10, 40, 40)];
   [eyeButton setBackgroundImage:[UIImage imageNamed:@"eye"]
@@ -198,15 +200,30 @@
       initWithFrame:CGRectMake(60, 60, 200, ScreenHeight - 60)];
 
   timeLabel = [[UILabel alloc]
-      initWithFrame:CGRectMake(20, ScreenHeight - 180, ScreenWidth, 40)];
+      initWithFrame:CGRectMake(20, ScreenHeight - 180, 30, 40)];
   timeLabel.textAlignment = NSTextAlignmentLeft;
+  timeLabel.tag = 1;
+
   [self.view addSubview:timeLabel];
 }
 
+- (void)colorBlink {
+  if (timeLabel.tag == 0) {
+    timeLabel.backgroundColor = [UIColor clearColor];
+    timeLabel.tag = 1;
+  } else {
+    timeLabel.tag = 0;
+    timeLabel.backgroundColor = [UIColor greenColor];
+  }
+}
 - (void)timeCountdown {
   lasttime--;
   if (lasttime == 0) {
     [timer invalidate];
+    [blinktimer invalidate];
+    timeLabel.text = [NSString stringWithFormat:@"%li'", (long)lasttime];
+    timeLabel.backgroundColor = [UIColor clearColor];
+    timeLabel.tag = 1;
     [self _endCapture];
 
   } else {
@@ -234,6 +251,8 @@
 #pragma mark - view lifecycle
 - (void)back:(UIButton *)btn {
   [timer invalidate];
+  [blinktimer invalidate];
+
   [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad {
@@ -310,15 +329,13 @@
 }
 
 - (void)_handleDoneButton:(UIButton *)button {
-  // resets long press
-  //  _longPressGestureRecognizer.enabled = NO;
-  //  _longPressGestureRecognizer.enabled = YES;
-  //    [self _endCapture];
-
   if (_isrecording) {
     [self _pauseCapture];
     [timer invalidate];
+    [blinktimer invalidate];
     _isrecording = !_isrecording;
+    timeLabel.backgroundColor = [UIColor clearColor];
+    timeLabel.tag = 1;
   } else {
     _isrecording = !_isrecording;
     timer = [NSTimer scheduledTimerWithTimeInterval:1
@@ -326,6 +343,11 @@
                                            selector:@selector(timeCountdown)
                                            userInfo:nil
                                             repeats:YES];
+    blinktimer = [NSTimer scheduledTimerWithTimeInterval:.5
+                                                  target:self
+                                                selector:@selector(colorBlink)
+                                                userInfo:nil
+                                                 repeats:YES];
     if (!_recording)
       [self _startCapture];
     else
@@ -340,38 +362,45 @@
     clickedButtonAtIndex:(NSInteger)buttonIndex {
   [self _resetCapture];
   [timer invalidate];
+  [blinktimer invalidate];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIGestureRecognizer
 - (void)overlayClipping {
-    CGFloat height = 300;
-    CGFloat width = 300;
-    UIView *overlayView = [[UIView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:overlayView];
-    overlayView.backgroundColor = [UIColor grayColor];
-    overlayView.alpha=.3f;
-    auxiliaryView = [[UIImageView alloc]
-                     initWithFrame:CGRectMake(ScreenWidth - width - 50, 30, width, height)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    CGMutablePathRef path = CGPathCreateMutable();
-    // Left side of the ratio view
-    CGPathAddRect(path, nil, CGRectMake(0, 0, auxiliaryView.frame.origin.x, self.view.frame.size.height));
-    // Right side of the ratio view
-    CGPathAddRect(path, nil, CGRectMake(auxiliaryView.frame.origin.x + auxiliaryView.frame.size.width, 0,
-                                        self.view.frame.size.width - auxiliaryView.frame.origin.x -
-                                        auxiliaryView.frame.size.width,
-                                        self.view.frame.size.height));
-    // Top side of the ratio view
-    CGPathAddRect(path, nil, CGRectMake(0, 0, self.view.frame.size.width, auxiliaryView.frame.origin.y));
-    // Bottom side of the ratio view
-    CGPathAddRect(
-                  path, nil,
-                  CGRectMake(0, auxiliaryView.frame.origin.y + auxiliaryView.frame.size.height, self.view.frame.size.width,
-                             self.view.frame.size.height - auxiliaryView.frame.origin.y + auxiliaryView.frame.size.height));
-    maskLayer.path = path;
-    overlayView.layer.mask = maskLayer;
-    CGPathRelease(path);
+  CGFloat height = 300;
+  CGFloat width = 300;
+  UIView *overlayView = [[UIView alloc] initWithFrame:self.view.bounds];
+  [self.view addSubview:overlayView];
+  overlayView.backgroundColor = [UIColor grayColor];
+  overlayView.alpha = .3f;
+  auxiliaryView = [[UIImageView alloc]
+      initWithFrame:CGRectMake(ScreenWidth - width - 50, 30, width, height)];
+  CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+  CGMutablePathRef path = CGPathCreateMutable();
+  // Left side of the ratio view
+  CGPathAddRect(path, nil, CGRectMake(0, 0, auxiliaryView.frame.origin.x,
+                                      self.view.frame.size.height));
+  // Right side of the ratio view
+  CGPathAddRect(
+      path, nil,
+      CGRectMake(auxiliaryView.frame.origin.x + auxiliaryView.frame.size.width,
+                 0, self.view.frame.size.width - auxiliaryView.frame.origin.x -
+                        auxiliaryView.frame.size.width,
+                 self.view.frame.size.height));
+  // Top side of the ratio view
+  CGPathAddRect(path, nil, CGRectMake(0, 0, self.view.frame.size.width,
+                                      auxiliaryView.frame.origin.y));
+  // Bottom side of the ratio view
+  CGPathAddRect(path, nil, CGRectMake(0, auxiliaryView.frame.origin.y +
+                                             auxiliaryView.frame.size.height,
+                                      self.view.frame.size.width,
+                                      self.view.frame.size.height -
+                                          auxiliaryView.frame.origin.y +
+                                          auxiliaryView.frame.size.height));
+  maskLayer.path = path;
+  overlayView.layer.mask = maskLayer;
+  CGPathRelease(path);
 }
 
 #pragma mark - PBJVisionDelegate
@@ -449,7 +478,8 @@
   BOOL isSuccess =
       [fileManager moveItemAtPath:videoPath toPath:toPath error:&error];
   if (isSuccess) {
-    _videoModel.videoImage = [VideoModel getImage:[NSURL fileURLWithPath:toPath]];
+    _videoModel.videoImage =
+        [VideoModel getImage:[NSURL fileURLWithPath:toPath]];
     UIAlertView *alert =
         [[UIAlertView alloc] initWithTitle:@"Saved!"
                                    message:@"Saved to the camera roll."
