@@ -18,8 +18,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        _markView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        _imageView.contentMode=UIViewContentModeScaleAspectFit;
+        _markView = [[UIImageView alloc] initWithFrame:CGRectMake(85, 85, 30, 30)];
         [_markView setImage:[UIImage imageNamed:@"add"]];
+        _markView.contentMode=UIViewContentModeCenter;
         [self addSubview:_imageView];
         [self addSubview:_markView];
     }
@@ -85,8 +87,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width-30, self.bounds.size.height)];
-        _markView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        _imageView.contentMode=UIViewContentModeScaleAspectFit;
+        _markView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
+        _markView.contentMode=UIViewContentModeCenter;
         [_markView setImage:[UIImage imageNamed:@"add"]];
+        
         _intervalLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-20, 15, 20, 20)];
         _intervalLabel.textColor=[UIColor whiteColor];
         _intervalLabel.textAlignment=NSTextAlignmentCenter;
