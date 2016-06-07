@@ -152,7 +152,6 @@
     NSURL *url;
     if (vedioModel.vedioType==2) {
         NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *myPathDocs = [documentsDirectory
                                 stringByAppendingPathComponent:vedioModel.strURL];

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "VideoModel.h"
+
+@protocol BottomCollectionCellDelegate;
+
 @interface CollectionViewCell : UICollectionViewCell
 
 @end
@@ -25,6 +28,13 @@
 @property (nonatomic,strong) UIImageView *markView;
 @property (nonatomic,strong) UILabel *intervalLabel;
 @property (nonatomic,strong) VideoModel *videoModel;
+@property (nonatomic,weak) id<BottomCollectionCellDelegate> bottomCelldelegate;
 -(void)configCellWithModel:(VideoModel*)model;
 
 @end
+@protocol BottomCollectionCellDelegate <NSObject>
+@optional
+-(void)cellLongPressGestureRecognizerpressed:(BottomCollectionCell*)cell;
+
+@end
+

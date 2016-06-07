@@ -92,6 +92,8 @@
         _markView.contentMode=UIViewContentModeCenter;
         [_markView setImage:[UIImage imageNamed:@"add"]];
         
+        UILongPressGestureRecognizer *longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressGestureRecognizerpressed:)];
+        [self.contentView addGestureRecognizer:longPress];
         _intervalLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-20, 15, 20, 20)];
         _intervalLabel.textColor=[UIColor whiteColor];
         _intervalLabel.textAlignment=NSTextAlignmentCenter;
@@ -103,4 +105,12 @@
     return self;
 }
 
+-(void)longPressGestureRecognizerpressed:(UILongPressGestureRecognizer*)longPress
+{
+    if (_bottomCelldelegate&&[
+        _bottomCelldelegate respondsToSelector:@selector(cellLongPressGestureRecognizerpressed:)]) {
+        [_bottomCelldelegate cellLongPressGestureRecognizerpressed:self];
+    }
+    
+}
 @end

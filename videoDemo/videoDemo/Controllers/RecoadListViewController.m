@@ -19,7 +19,7 @@
 #define BOTTOM_CELL_HEIGHT 50
 #define BOTTOM_CELL_WIDTH 80
 @interface RecoadListViewController ()<UICollectionViewDelegate,
-                                       UICollectionViewDataSource,UIAlertViewDelegate>
+                                       UICollectionViewDataSource,UIAlertViewDelegate,BottomCollectionCellDelegate>
 @property(nonatomic, strong) UICollectionView *topCollection;
 @property(nonatomic, strong) UICollectionView *bottomCollection;
 @property (nonatomic,strong) NSMutableArray *videos;
@@ -198,9 +198,30 @@
     BottomCollectionCell *cell =
         [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
                                                   forIndexPath:indexPath];
+    cell.bottomCelldelegate =self;
     [cell configCellWithModel:model];
     return cell;
   }
+}
+-(void)cellLongPressGestureRecognizerpressed:(BottomCollectionCell*)cell
+{
+    NSIndexPath *indexPath=[_bottomCollection indexPathForCell:cell];
+    VideoModel *model = [self.datasoure objectAtIndex:indexPath.item];
+
+        //预制视频
+        SMAVPlayerViewController *playerVC = [[SMAVPlayerViewController alloc]
+                                              initWithNibName:@"SMAVPlayerViewController"
+                                              bundle:nil];
+        NSMutableArray *arrVedio = [NSMutableArray array];
+        VideoModel *vedioModel = [[VideoModel alloc] init];
+        vedioModel.strURL = model.strURL;
+        vedioModel.vedioType = model.vedioType;
+        vedioModel.strUserID = @"1";
+        [arrVedio addObject:vedioModel];
+        playerVC.arrVedio = arrVedio;
+        [self presentViewController:playerVC animated:YES completion:nil];
+    
+
 }
 
 #pragma mark--UICollectionViewDelegateFlowLayout
