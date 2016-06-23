@@ -200,8 +200,10 @@
       initWithFrame:CGRectMake(60, 60, 200, ScreenHeight - 60)];
 
   timeLabel = [[UILabel alloc]
-      initWithFrame:CGRectMake(20, ScreenHeight - 180, 30, 40)];
-  timeLabel.textAlignment = NSTextAlignmentLeft;
+      initWithFrame:CGRectMake(20, ScreenHeight - 180, 30, 30)];
+    timeLabel.layer.cornerRadius = 15;
+    timeLabel.clipsToBounds = YES;
+  timeLabel.textAlignment = NSTextAlignmentCenter;
   timeLabel.tag = 1;
 
   [self.view addSubview:timeLabel];
