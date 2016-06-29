@@ -22,14 +22,18 @@
 -(void)configCellWithModel:(StoryModel *)model
 {
     _model=model;
-    [self.videorecordButton setBackgroundImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
     [self.videoPreviewButton setImage:[UIImage imageNamed:model.thumb] forState:UIControlStateNormal];
     if ([model.title hasSuffix:@".mov"]) {
         self.titleLabel.text = [model.title substringWithRange:NSMakeRange(0, [model.title length] - 9)];
     } else {
         self.titleLabel.text = model.title;
     }
-    self.videorecordButton.hidden=model.ifDesk;
+//    self.videorecordButton.hidden=model.ifDesk;
+    if (model.ifDesk) {
+        [self.videorecordButton setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    }else{
+        [self.videorecordButton setBackgroundImage:[UIImage imageNamed:@"camera"] forState:UIControlStateNormal];
+    }
 }
 -(void)setupSubviews
 {
@@ -73,7 +77,7 @@
 
 -(void)videorecordButtonPressed:(UIButton *)btn
 {
-    if (_Delegate&&[_Delegate respondsToSelector:@selector(videorecordButtonDidSelected:)]) {
+    if (_Delegate&&[_Delegate respondsToSelector:@selector(videorecordButtonDidSelected:)]&&(!self.model.ifDesk)) {
         [_Delegate videorecordButtonDidSelected:self];
     }
     
@@ -84,6 +88,5 @@
     if (_Delegate&&[_Delegate respondsToSelector:@selector(videoPreviewButtonDidSelected:)]) {
         [_Delegate videoPreviewButtonDidSelected:self];
     }
-    
 }
 @end
