@@ -107,13 +107,18 @@
   AVMutableCompositionTrack *firstTrack = [mixComposition
       addMutableTrackWithMediaType:AVMediaTypeVideo
                   preferredTrackID:kCMPersistentTrackID_Invalid];
-
+  AVMutableCompositionTrack *compositionCommentaryTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio
+                                                                                        preferredTrackID:kCMPersistentTrackID_Invalid];
+    
   AVAsset *firstAsset = videoAssets[0];
   [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration)
                       ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeVideo]
                                   objectAtIndex:0]
                        atTime:kCMTimeZero
                         error:nil];
+   [compositionCommentaryTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration)
+                                        ofTrack:[[firstAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
+                                         atTime:kCMTimeZero error:nil];
 
   AVAsset *secondAsset = videoAssets[1];
 
@@ -123,6 +128,14 @@
                           objectAtIndex:0]
                atTime:CMTimeSubtract(firstAsset.duration, CMTimeMake(10, 60))
                 error:nil];
+    [compositionCommentaryTrack
+     insertTimeRange:CMTimeRangeMake(kCMTimeZero, secondAsset.duration)
+     ofTrack:[[secondAsset tracksWithMediaType:AVMediaTypeAudio]
+              objectAtIndex:0]
+     atTime:CMTimeSubtract(firstAsset.duration, CMTimeMake(10, 60))
+     error:nil];
+  
+    
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                        NSUserDomainMask, YES);
@@ -154,6 +167,50 @@
 
   }];
   NSLog(@"2222222222222222222222");
+    
+//    AVURLAsset* audioAsset = [[AVURLAsset alloc]initWithURL:audioUrl options:nil];
+//    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:videoUrl options:nil];
+//    
+//    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+//    
+//    AVMutableCompositionTrack *compositionCommentaryTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio
+//                                                                                        preferredTrackID:kCMPersistentTrackID_Invalid];
+//    [compositionCommentaryTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration)
+//                                        ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
+//                                         atTime:kCMTimeZero error:nil];
+//    
+//    AVMutableCompositionTrack *compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo
+//                                                                                   preferredTrackID:kCMPersistentTrackID_Invalid];
+//    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration)
+//                                   ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0]
+//                                    atTime:kCMTimeZero error:nil];
+//    
+//    AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition
+//                                                                          presetName:AVAssetExportPresetPassthrough];
+//    
+//    NSString* videoName = @"export.mov";
+//    
+//    NSString *exportPath = [NSTemporaryDirectory() stringByAppendingPathComponent:videoName];
+//    NSURL    *exportUrl = [NSURL fileURLWithPath:exportPath];
+//    
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath])
+//    {
+//        [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
+//    }
+//    
+//    _assetExport.outputFileType = @"com.apple.quicktime-movie";
+//    DLog(@"file type %@",_assetExport.outputFileType);
+//    _assetExport.outputURL = exportUrl;
+//    _assetExport.shouldOptimizeForNetworkUse = YES;
+//    
+//    [_assetExport exportAsynchronouslyWithCompletionHandler:
+//     ^(void ) {        
+//         // your completion code here  
+//     }         
+//     }  
+//     ];
+//    
+    
 }
 + (UIImage *)getImage:(NSURL *)videoURL {
   AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
