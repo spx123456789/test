@@ -128,7 +128,7 @@
 - (void)playButtonPressed:(UIButton *)btn {
     BOOL ifRecoad;
     _videos=[NSMutableArray arrayWithArray:self.datasoure];
-    for (int i=0; i<7;i++ ) {
+    for (int i=0; i<(_videos.count - 1); i++ ) {
         VideoModel *vedioModel=_videos[i];
         if (vedioModel.strURL&&vedioModel.vedioType==2) {
             ifRecoad=YES;
@@ -309,7 +309,7 @@
         if (indexPath.item == (self.datasoure.count - 1)) {
             //拼接这些视频
             _videos=[NSMutableArray arrayWithArray:self.datasoure];
-            for (int i=0; i<7;i++ ) {
+            for (int i=0; i<(self.datasoure.count - 1);i++ ) {
                 VideoModel *vedioModel=_videos[i];
                 if (!vedioModel.strURL) {
                     isComplete=NO;

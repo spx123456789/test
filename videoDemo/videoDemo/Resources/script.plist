@@ -10,7 +10,7 @@
 		<key>word</key>
 		<string>哈哈</string>
 		<key>thumb</key>
-		<string>sc1</string>
+		<string>sc</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -20,7 +20,7 @@
 		<key>word</key>
 		<string>呵呵</string>
 		<key>thumb</key>
-		<string>sc2</string>
+		<string>sc</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -30,7 +30,67 @@
 		<key>word</key>
 		<string>吼吼</string>
 		<key>thumb</key>
-		<string>sc3</string>
+		<string>sc</string>
 	</dict>
+    <dict>
+        <key>id</key>
+        <string>21</string>
+        <key>time</key>
+        <integer>6</integer>
+        <key>word</key>
+        <string>哈哈</string>
+        <key>thumb</key>
+        <string>sc</string>
+    </dict>
+    <dict>
+        <key>id</key>
+        <string>22</string>
+        <key>time</key>
+        <integer>6</integer>
+        <key>word</key>
+        <string>呵呵</string>
+        <key>thumb</key>
+        <string>sc</string>
+    </dict>
+    <dict>
+        <key>id</key>
+        <string>23</string>
+        <key>time</key>
+        <integer>6</integer>
+        <key>word</key>
+        <string>吼吼</string>
+        <key>thumb</key>
+        <string>sc</string>
+    </dict>
+    <dict>
+        <key>id</key>
+        <string>31</string>
+        <key>time</key>
+        <integer>6</integer>
+        <key>word</key>
+        <string>吼吼</string>
+        <key>thumb</key>
+        <string>sc</string>
+    </dict>
+    <dict>
+        <key>id</key>
+        <string>41</string>
+        <key>time</key>
+        <integer>6</integer>
+        <key>word</key>
+        <string>吼吼</string>
+        <key>thumb</key>
+        <string>sc</string>
+    </dict>
+    <dict>
+        <key>id</key>
+        <string>42</string>
+        <key>time</key>
+        <integer>6</integer>
+        <key>word</key>
+        <string>吼吼</string>
+        <key>thumb</key>
+        <string>sc</string>
+    </dict>
 </array>
 </plist>

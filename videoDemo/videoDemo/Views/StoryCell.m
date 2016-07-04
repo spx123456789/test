@@ -23,6 +23,7 @@
 {
     _model=model;
     [self.videoPreviewButton setImage:[UIImage imageNamed:model.thumb] forState:UIControlStateNormal];
+    [self.videorecordButton setContentMode:UIViewContentModeScaleAspectFit];
     if ([model.title hasSuffix:@".mov"]) {
         self.titleLabel.text = [model.title substringWithRange:NSMakeRange(0, [model.title length] - 9)];
     } else {
