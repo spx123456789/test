@@ -96,7 +96,7 @@
       [videoAssets addObject:asset];
     } else {
       NSURL *video_url = [NSURL
-          fileURLWithPath:[[NSBundle mainBundle] pathForResource:model.videoPath
+          fileURLWithPath:[[NSBundle mainBundle] pathForResource:model.strURL
                                                           ofType:@"mp4"]];
       AVAsset *asset = [AVAsset assetWithURL:video_url];
       [videoAssets addObject:asset];
