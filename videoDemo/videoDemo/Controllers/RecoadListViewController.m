@@ -260,7 +260,11 @@
         }else{
         array=[[NSMutableArray alloc]initWithContentsOfFile:filename];
         }
-        [array addObject:obj.object];
+        NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+        [dic setObject:obj.object forKey:@"storyName"];
+        [dic setObject:_storyModel.thumb forKey:@"thumb"];
+        [dic setObject:_storyModel.title forKey:@"title"];
+        [array addObject:dic];
         [array writeToFile:filename atomically:YES];
         [self .navigationController popViewControllerAnimated:YES];
         

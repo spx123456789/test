@@ -32,19 +32,19 @@
   }
   self.dDataSourse = [[NSMutableArray alloc] init];
   if (array.count) {
-    for (NSString *strname in array) {
+    for (NSDictionary *strname in array) {
       NSString *plistPath =
           [[NSBundle mainBundle] pathForResource:@"story" ofType:@"plist"];
       NSMutableArray *data =
           [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
       NSDictionary *dic = data[0];
       StoryModel *model = [[StoryModel alloc] init];
-      model.thumb = [dic objectForKey:@"thumb"];
+      model.thumb = [strname objectForKey:@"thumb"];
       model.localID = [dic objectForKey:@"id"];
       model.itemArray =
           [NSMutableArray arrayWithArray:[dic objectForKey:@"section"]];
-      model.videoUrl = strname;
-      model.title = [[dic objectForKey:@"title"] stringByAppendingString:strname];
+      model.videoUrl = [strname objectForKey:@"storyName"];
+      model.title = [[strname objectForKey:@"title"] stringByAppendingString:[strname objectForKey:@"storyName"]];
       model.ifDesk = YES;
         [self.dDataSourse addObject:model];
     }
@@ -221,6 +221,7 @@
   RecoadListViewController *controller =
       [[RecoadListViewController alloc] init];
   controller.datasoure = cell.model.itemArray;
+    controller.storyModel=cell.model;
   [self.navigationController pushViewController:controller animated:YES];
 }
 
